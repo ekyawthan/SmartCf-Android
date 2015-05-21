@@ -26,7 +26,6 @@ public class LoginActivity extends ActionBarActivity {
         userPassword = (MaterialEditText) findViewById(R.id.password);
 
 
-
     }
 
 

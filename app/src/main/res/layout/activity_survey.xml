@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="kyawthanmong.cystic.SurveyActivity">
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:textSize="20dp"
+        android:text="Question 1 of up to 10"
+        android:id="@+id/textViewCurrent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.daimajia.numberprogressbar.NumberProgressBar
+        android:id="@+id/numberbar2"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        custom:progress="20"
+        android:layout_width="match_parent"
+        style="@style/NumberProgressBar_Passing_Green"
+        />
+    <TextView
+        android:gravity="center_horizontal"
+        android:text="I decided to do this because I was really tired of android original progress bar. So, I made some change,
+        added more color style for this."
+        android:textSize="20dp"
+        android:singleLine="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+</LinearLayout>

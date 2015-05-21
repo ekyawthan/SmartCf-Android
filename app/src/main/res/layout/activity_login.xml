@@ -8,7 +8,8 @@
     tools:context="kyawthanmong.cystic.LoginActivity">
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/userId"
-        android:layout_marginTop="100dp"
+        android:inputType="number"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_width="match_parent"
