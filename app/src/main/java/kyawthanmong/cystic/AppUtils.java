@@ -21,8 +21,17 @@ public class AppUtils {
 
     public static boolean isOnline(Context ctx) {
         ConnectivityManager cm = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if( cm.getActiveNetworkInfo() == null ) return false;
+        if( cm.getActiveNetworkInfo() == null ) {
+            return false;
+
+        }
+
         return cm.getActiveNetworkInfo().isConnectedOrConnecting();
+    }
+
+    public static boolean isMondayYet(Context context){
+        // should check if it ok to render another survey
+        return true;
     }
 }
 

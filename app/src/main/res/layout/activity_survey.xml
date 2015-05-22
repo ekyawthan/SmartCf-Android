@@ -5,11 +5,11 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context="kyawthanmong.cystic.SurveyActivity">
+    tools:context="kyawthanmong.cystic.controller.SurveyActivity">
 
     <TextView
         android:layout_marginTop="50dp"
-        android:layout_gravity="center_horizontal"
+        android:textAlignment="center"
         android:textSize="20dp"
         android:text="Question 1 of up to 10"
         android:id="@+id/textViewCurrent"
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content" />
 
     <com.daimajia.numberprogressbar.NumberProgressBar
-        android:id="@+id/numberbar2"
+        android:id="@+id/numberbarForCurrent"
         android:layout_height="wrap_content"
         android:padding="20dp"
         custom:progress="20"
@@ -25,13 +25,43 @@
         style="@style/NumberProgressBar_Passing_Green"
         />
     <TextView
-        android:gravity="center_horizontal"
-        android:text="I decided to do this because I was really tired of android original progress bar. So, I made some change,
-        added more color style for this."
+        android:gravity="center"
+        android:id="@+id/surveyQuestion"
+        android:text=""
+        android:textAlignment="center"
         android:textSize="20dp"
         android:singleLine="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:weightSum="4"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/yes"
+            android:layout_margin="5dp"
+            android:text="Yes"
+            android:onClick="didResponseToQuestion"
+            android:textColor="#fff"
+            android:background="#db151041"
+            android:layout_weight="2"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_margin="5dp"
+            android:text="No"
+            android:onClick="didResponseToQuestion"
+            android:id="@+id/no"
+            android:textColor="#fff"
+            android:background="#ffff1a13"
+            android:layout_weight="2"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 
 

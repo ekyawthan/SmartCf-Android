@@ -1,11 +1,38 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_marginTop="50dp"
     tools:context=".MainActivity">
 
+    <TextView
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20pt"
+        android:textColor="@android:color/holo_orange_dark"
+        android:id="@+id/greeeting_text"
+        android:text= "Welcome to Wall Survey"
+        android:singleLine="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/buttonSurveyXml"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/greeeting_text"
+        android:text="Take Survey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:background="@android:color/transparent"
+        android:textColor="#db151041"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log Out"
+        android:id="@+id/logOutButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 
-
-</LinearLayout>
+</RelativeLayout>

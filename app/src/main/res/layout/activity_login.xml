@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="kyawthanmong.cystic.LoginActivity">
+    tools:context="kyawthanmong.cystic.controller.LoginActivity">
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/userId"
         android:inputType="number"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="100dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:layout_width="match_parent"
@@ -18,16 +18,7 @@
         android:hint="ID"
         app:met_floatingLabel="normal" />
 
-    <com.rengwuxian.materialedittext.MaterialEditText
-        android:id="@+id/password"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:hint="password"
-        android:inputType="textPassword"
-        app:met_floatingLabel="normal" />
+
     <Button
         android:onClick="didClickOnSignIn"
         android:layout_marginTop="10dp"
