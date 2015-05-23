@@ -52,7 +52,7 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
         currentSurveyQuestion       = (TextView) findViewById(R.id.surveyQuestion);
         numberProgressBar           = (NumberProgressBar) findViewById(R.id.numberbarForCurrent);
         yesButton                   = (Button) findViewById(R.id.yes);
-        noButton                   = (Button) findViewById(R.id.no);
+        noButton                    = (Button) findViewById(R.id.no);
 
 
 
