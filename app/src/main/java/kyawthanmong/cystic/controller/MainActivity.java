@@ -7,9 +7,12 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import kyawthanmong.cystic.Alarm.AlarmBroadcastReceiver;
@@ -60,6 +63,12 @@ public class MainActivity extends ActionBarActivity {
                 finish();
             }
         });
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Calendar cal = Calendar.getInstance();
+
+        Log.i("current time", dateFormat.format(cal.getTime()));
+
+
         shouldSetAlarm();
     }
 
@@ -68,17 +77,20 @@ public class MainActivity extends ActionBarActivity {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 
-        calendar.set(Calendar.HOUR_OF_DAY, 12);
-        calendar.set(Calendar.MINUTE, 00);
-        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 21);
+        calendar.set(Calendar.MINUTE, 35);
+        calendar.set(Calendar.SECOND, 00);
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
+        Log.i("set Time",dateFormat.format(calendar.getTime() ));
 
         Intent myIntent = new Intent(MainActivity.this, AlarmBroadcastReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, 0);
 
-        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-        
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000 * 60 * 30, pendingIntent);
+
+
 
     }
 
