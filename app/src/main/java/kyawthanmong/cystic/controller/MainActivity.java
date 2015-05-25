@@ -75,16 +75,17 @@ public class MainActivity extends ActionBarActivity {
     private void shouldSetAlarm() {
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        //calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 
-        calendar.set(Calendar.HOUR_OF_DAY, 21);
-        calendar.set(Calendar.MINUTE, 35);
+        calendar.set(Calendar.HOUR_OF_DAY, 12);
+        calendar.set(Calendar.MINUTE, 00);
         calendar.set(Calendar.SECOND, 00);
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
         Log.i("set Time",dateFormat.format(calendar.getTime() ));
 
         Intent myIntent = new Intent(MainActivity.this, AlarmBroadcastReceiver.class);
+        myIntent.putExtra("alarmId", 0);
         pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, 0);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
