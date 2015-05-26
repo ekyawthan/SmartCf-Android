@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,8 +25,9 @@ import kyawthanmong.cystic.adapter.Settings;
 public class MainActivity extends ActionBarActivity {
 
     private Button                  surveyButton, logOut;
+    private TextView                textViewSurveyAvailable;
     private Settings                settings;
-    private PendingIntent pendingIntent;
+    private PendingIntent           pendingIntent;
 
 
     @Override
@@ -63,48 +65,42 @@ public class MainActivity extends ActionBarActivity {
                 finish();
             }
         });
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        Calendar cal = Calendar.getInstance();
-
-        Log.i("current time", dateFormat.format(cal.getTime()));
 
 
-        shouldSetAlarm();
+        setWeeklyAlarm();
     }
 
-    private void shouldSetAlarm() {
 
-        Calendar calendar = Calendar.getInstance();
-        //calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-
-        calendar.set(Calendar.HOUR_OF_DAY, 12);
-        calendar.set(Calendar.MINUTE, 00);
-        calendar.set(Calendar.SECOND, 00);
-        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-
-        Log.i("set Time",dateFormat.format(calendar.getTime() ));
-
-        Intent myIntent = new Intent(MainActivity.this, AlarmBroadcastReceiver.class);
-        myIntent.putExtra("alarmId", 0);
-        pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, 0);
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 1000 * 60 * 30, pendingIntent);
-
-
-
-    }
 
 
     private void shouldSetUpView(){
         surveyButton        = (Button) findViewById(R.id.buttonSurveyXml);
         logOut              = (Button) findViewById(R.id.logOutButton);
+        textViewSurveyAvailable = (TextView) findViewById(R.id.textViewSurvey);
         surveyButton.setVisibility(View.INVISIBLE);
+        textViewSurveyAvailable.setVisibility(View.INVISIBLE);
 
         if (AppUtils.isMondayYet(this)) {
-            surveyButton.setVisibility(View.VISIBLE);
-
+            if(!settings.getSurveyTakenStatus()){
+                surveyButton.setVisibility(View.VISIBLE);
+            }
         }
+
+        else {
+            textViewSurveyAvailable.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+
+    private void setWeeklyAlarm(){
+        Calendar monday = Calendar.getInstance();
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Intent myIntent = new Intent(MainActivity.this, AlarmBroadcastReceiver.class);
+
+        pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, 0);
+
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, monday.getTimeInMillis(),alarmManager.INTERVAL_DAY * 7,pendingIntent);
 
     }
 
@@ -113,11 +109,5 @@ public class MainActivity extends ActionBarActivity {
         return;
     }
 
-
-
-
-
-    private void shouldSetupAlermOnMonday(){
-    }
 
 }

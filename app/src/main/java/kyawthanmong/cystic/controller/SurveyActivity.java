@@ -13,7 +13,9 @@ import com.daimajia.numberprogressbar.NumberProgressBar;
 
 import net.steamcrafted.loadtoast.LoadToast;
 
+import kyawthanmong.cystic.AppUtils;
 import kyawthanmong.cystic.R;
+import kyawthanmong.cystic.adapter.Settings;
 import kyawthanmong.cystic.delegate.InterfacePostServery;
 import kyawthanmong.cystic.network.POSTSurvey;
 
@@ -27,6 +29,7 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
     Button yesButton, noButton;
     int Counter = 0;
     String post_delaycount = "Some random";
+    private Settings settings ;
 
     String post_choices ;
     String post_answers ;
@@ -37,6 +40,12 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
+
+
+        if (!AppUtils.isMondayYet(this)){
+            finish();
+        }
+        settings = new Settings(this);
         setTitle("Survey");
         if (getSupportActionBar() != null){
             getSupportActionBar().setElevation(0);
@@ -119,6 +128,7 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
     @Override
     public void didSucessedPostServey() {
         loadToast.success();
+        settings.setSurveyTakenStatus(true);
         finish();
 
     }

@@ -18,6 +18,7 @@
         android:layout_height="wrap_content" />
     <Button
         android:id="@+id/buttonSurveyXml"
+        android:background="@android:color/transparent"
         android:layout_marginTop="40dp"
         android:layout_below="@+id/greeeting_text"
         android:text="Take Survey"
@@ -33,6 +34,16 @@
         android:id="@+id/logOutButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:textStyle="bold"
+        android:text="Survey Not Available, Come back On Monday"
+        android:layout_below="@+id/buttonSurveyXml"
+        android:id="@+id/textViewSurvey"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 
 </RelativeLayout>

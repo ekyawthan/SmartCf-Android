@@ -38,4 +38,9 @@ public class Settings {
 
     public  void setAlarmLimit(int limit) {this.editor.putInt("alarmLimit", 0).commit();}
     public int getAlarmLimit(){return pref.getInt("alarmLimit", 1);}
+
+    public void setSurveyTakenStatus(boolean b){ this.editor.putBoolean("survey", b).commit();}
+    public boolean getSurveyTakenStatus(){ return pref.getBoolean("survey", false);}
+
+
 }

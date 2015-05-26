@@ -38,12 +38,12 @@ public class POSTLogin {
         this.mContext= context;
         this.settings = new Settings(context);
         settings.setUserId(id);
-        shouldRequestionLogin(id);
+        shouldRequestingLogin(id);
 
 
     }
 
-    private void shouldRequestionLogin(String id) {
+    private void shouldRequestingLogin(String id) {
         RequestParams params = new RequestParams();
         params.add("id", id);
         shouldContactServer(params);
@@ -58,6 +58,7 @@ public class POSTLogin {
                 Log.i(TAG, new String(responseBody));
                 LoginResponseModel model = new LoginResponseModel();
                 Gson gson = new Gson();
+                Log.i(TAG , String.valueOf(statusCode));
                 model = gson.fromJson(new String(responseBody), LoginResponseModel.class);
 
                 if (model.loginCode == 1) {

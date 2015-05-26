@@ -3,6 +3,8 @@ package kyawthanmong.cystic;
 import android.content.Context;
 import android.net.ConnectivityManager;
 
+import java.util.Calendar;
+
 
 /**
  * Created by kyawthan on 5/20/15.
@@ -30,8 +32,9 @@ public class AppUtils {
     }
 
     public static boolean isMondayYet(Context context){
-        // should check if it ok to render another survey
-        return true;
+        Calendar calendar = Calendar.getInstance();
+
+       return (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY);
     }
 }
 
