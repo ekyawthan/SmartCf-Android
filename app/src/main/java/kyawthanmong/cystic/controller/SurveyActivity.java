@@ -46,6 +46,9 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
             finish();
         }
         settings = new Settings(this);
+        if (!settings.getSurveyAvailableStatus()){
+            finish();
+        }
         setTitle("Survey");
         if (getSupportActionBar() != null){
             getSupportActionBar().setElevation(0);
@@ -128,7 +131,7 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
     @Override
     public void didSucessedPostServey() {
         loadToast.success();
-        settings.setSurveyTakenStatus(true);
+        settings.setSurveyAvailableStatus(false);
         finish();
 
     }

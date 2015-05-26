@@ -42,5 +42,8 @@ public class Settings {
     public void setSurveyTakenStatus(boolean b){ this.editor.putBoolean("survey", b).commit();}
     public boolean getSurveyTakenStatus(){ return pref.getBoolean("survey", false);}
 
+    public void setSurveyAvailableStatus(boolean b){this.editor.putBoolean("avaible", b).commit();}
+    public boolean getSurveyAvailableStatus(){return  pref.getBoolean("avaible", false);}
+
 
 }

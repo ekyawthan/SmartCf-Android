@@ -43,7 +43,7 @@ public class IsSurveyAvailable {
         RestClientAdapter.post(Constant.SURVEYAVAILABLE_URL, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                Log.i(TAG, new String(responseBody));
+
                 ModelSurvey modelSurvey = new ModelSurvey();
                 Gson gson = new Gson();
                 modelSurvey = gson.fromJson(new String(responseBody), ModelSurvey.class);

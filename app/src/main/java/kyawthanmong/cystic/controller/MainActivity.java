@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,6 +27,8 @@ public class MainActivity extends ActionBarActivity implements InterfaceIsSurvey
     private TextView                textViewSurveyAvailable;
     private Settings                settings;
     private PendingIntent           pendingIntent;
+
+    private String TAG = "MAIN";
 
 
     @Override
@@ -61,6 +64,8 @@ public class MainActivity extends ActionBarActivity implements InterfaceIsSurvey
             @Override
             public void onClick(View v) {
                 settings.setUserLoginStatus(false);
+                settings.setSurveyTakenStatus(false);
+                settings.setSurveyAvailableStatus(false);
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 finish();
             }
@@ -71,22 +76,28 @@ public class MainActivity extends ActionBarActivity implements InterfaceIsSurvey
     }
 
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        shouldSetUpView();
+    }
 
     private void shouldSetUpView(){
-        surveyButton        = (Button) findViewById(R.id.buttonSurveyXml);
-        logOut              = (Button) findViewById(R.id.logOutButton);
-        textViewSurveyAvailable = (TextView) findViewById(R.id.textViewSurvey);
+        surveyButton                    = (Button) findViewById(R.id.buttonSurveyXml);
+        logOut                          = (Button) findViewById(R.id.logOutButton);
+        textViewSurveyAvailable         = (TextView) findViewById(R.id.textViewSurvey);
         surveyButton.setVisibility(View.INVISIBLE);
         textViewSurveyAvailable.setVisibility(View.INVISIBLE);
 
         if (AppUtils.isMondayYet(this)) {
-            if(!settings.getSurveyTakenStatus()){
+            if(settings.getSurveyAvailableStatus()){
                 surveyButton.setVisibility(View.VISIBLE);
+            } else {
+                textViewSurveyAvailable.setVisibility(View.VISIBLE);
             }
         }
-
-        else {
+        else
+        {
             textViewSurveyAvailable.setVisibility(View.VISIBLE);
         }
 
@@ -113,8 +124,13 @@ public class MainActivity extends ActionBarActivity implements InterfaceIsSurvey
     @Override
     public void issurveyavaible(boolean status) {
         if (AppUtils.isMondayYet(this)) {
-            settings.setSurveyTakenStatus(status);
-            
+            if (status){
+                Log.i(TAG, "available");
+            }
+
+            settings.setSurveyAvailableStatus(status);
+            shouldSetUpView();
+
         }
 
 
