@@ -112,7 +112,11 @@ public class MainActivity extends ActionBarActivity implements InterfaceIsSurvey
 
     @Override
     public void issurveyavaible(boolean status) {
-        settings.setSurveyTakenStatus(status);
+        if (AppUtils.isMondayYet(this)) {
+            settings.setSurveyTakenStatus(status);
+            
+        }
+
 
     }
 
