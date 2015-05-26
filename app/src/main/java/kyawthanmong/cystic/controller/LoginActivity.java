@@ -35,6 +35,12 @@ public class LoginActivity
         this.settings = new Settings(this);
         this.loadToast = new LoadToast(this);
         shouldSetupView();
+        setTitle("");
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setElevation(0);
+
+        }
+
 
     }
 

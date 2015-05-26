@@ -18,18 +18,14 @@ import kyawthanmong.cystic.adapter.Settings;
 import kyawthanmong.cystic.delegate.InterfaceIsSurveyAvailable;
 import kyawthanmong.cystic.network.IsSurveyAvailable;
 
-
 public class MainActivity extends ActionBarActivity implements InterfaceIsSurveyAvailable
-
 {
-
     private Button                  surveyButton, logOut;
     private TextView                textViewSurveyAvailable;
     private Settings                settings;
     private PendingIntent           pendingIntent;
 
     private String TAG = "MAIN";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +66,6 @@ public class MainActivity extends ActionBarActivity implements InterfaceIsSurvey
                 finish();
             }
         });
-
 
         setWeeklyAlarm();
     }
