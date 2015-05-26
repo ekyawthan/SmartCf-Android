@@ -19,6 +19,7 @@ public class FiveTimeAlarmBroadcastReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         if (AppUtils.isMondayYet(context)) {
+            settings.setSurveyTakenStatus(false);
             Intent service1 = new Intent(context, AlarmService.class);
             context.startService(service1);
 

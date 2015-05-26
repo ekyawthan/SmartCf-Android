@@ -6,23 +6,21 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
 import kyawthanmong.cystic.Alarm.AlarmBroadcastReceiver;
 import kyawthanmong.cystic.AppUtils;
 import kyawthanmong.cystic.R;
 import kyawthanmong.cystic.adapter.Settings;
+import kyawthanmong.cystic.delegate.InterfaceIsSurveyAvailable;
+import kyawthanmong.cystic.network.IsSurveyAvailable;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements InterfaceIsSurveyAvailable
+
+{
 
     private Button                  surveyButton, logOut;
     private TextView                textViewSurveyAvailable;
@@ -41,6 +39,8 @@ public class MainActivity extends ActionBarActivity {
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         }
+
+        new IsSurveyAvailable(this, this);
         if (getSupportActionBar() != null){
             getSupportActionBar().setElevation(0);
 
@@ -110,4 +110,14 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
+    @Override
+    public void issurveyavaible(boolean status) {
+        settings.setSurveyTakenStatus(status);
+
+    }
+
+    @Override
+    public void failedTogetData() {
+
+    }
 }
