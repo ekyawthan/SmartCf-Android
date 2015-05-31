@@ -55,18 +55,11 @@ public class POSTLogin {
         RestClientAdapter.post(Constant.LOGIN_URL, params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                Log.i(TAG, new String(responseBody));
-                LoginResponseModel model = new LoginResponseModel();
-                Gson gson = new Gson();
-                Log.i(TAG , String.valueOf(statusCode));
-                model = gson.fromJson(new String(responseBody), LoginResponseModel.class);
-
-                if (model.loginCode == 1) {
-                    settings.setUserLoginStatus(true);
+               Log.i(TAG, String.valueOf(statusCode));
+                if (statusCode == 200){
                     delegate.didLoginSucceess();
-                } else {
+                }else {
                     delegate.didLoginFail();
-
                 }
 
             }

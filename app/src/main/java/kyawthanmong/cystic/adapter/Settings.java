@@ -45,5 +45,8 @@ public class Settings {
     public void setSurveyAvailableStatus(boolean b){this.editor.putBoolean("avaible", b).commit();}
     public boolean getSurveyAvailableStatus(){return  pref.getBoolean("avaible", false);}
 
+    public void setDelayCounter(int counter){ this.editor.putInt("delayCounter", counter).commit() ; }
+    public int getDelayCounter(){return  pref.getInt("delayCounter", 0);}
+
 
 }

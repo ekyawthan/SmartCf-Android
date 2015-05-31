@@ -99,7 +99,7 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
 
         }
         Log.i(post_answers, post_choices);
-        new POSTSurvey(this, post_choices, post_answers, "", this);
+        new POSTSurvey(this, post_choices, post_answers, this);
         loadToast.setText("Posting Survey");
         loadToast.show();
 

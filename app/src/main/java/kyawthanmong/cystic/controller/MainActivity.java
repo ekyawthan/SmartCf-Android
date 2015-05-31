@@ -42,8 +42,10 @@ public class MainActivity extends ActionBarActivity implements InterfaceIsSurvey
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         }
+        if (settings.isUserLogin()){
+            new IsSurveyAvailable(this, this);
 
-        new IsSurveyAvailable(this, this);
+        }
         if (getSupportActionBar() != null){
             getSupportActionBar().setElevation(0);
 

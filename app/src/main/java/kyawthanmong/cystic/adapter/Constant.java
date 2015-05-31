@@ -5,9 +5,9 @@ package kyawthanmong.cystic.adapter;
  */
 public class Constant {
 
-    public static final String BASE_URL = "http://naeemslearning.com/wellpath";
-    public static final String LOGIN_URL = "/patientLogin.php";
+    public static final String BASE_URL = "http://52.7.122.129";
+    public static final String LOGIN_URL = "/user/";
     public static final String SURVEYAVAILABLE_URL = "/isSurveyAvailable.php";
 
-    public static final String SURVEY_POST = "/insertData.php";
+    public static final String SURVEY_POST = "/survey/";
 }

@@ -19,7 +19,7 @@ public class AppUtils {
         return BuildConfig.VERSION_NAME + "." + BuildConfig.VERSION_CODE;
 
     }
-    
+
     public static boolean isOnline(Context ctx) {
         ConnectivityManager cm = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
         if( cm.getActiveNetworkInfo() == null ) {
