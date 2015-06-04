@@ -48,5 +48,8 @@ public class Settings {
     public void setDelayCounter(int counter){ this.editor.putInt("delayCounter", counter).commit() ; }
     public int getDelayCounter(){return  pref.getInt("delayCounter", 0);}
 
+    public void setLastSurveyTakenDate(String date){ this.editor.putString("lastSurveyDate", date).commit();}
+    public String getLastSurveyTakenDate(){return pref.getString("lastSurveyDate", "");}
+
 
 }

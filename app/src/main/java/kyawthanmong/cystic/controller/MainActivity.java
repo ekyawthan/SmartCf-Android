@@ -4,22 +4,23 @@ package kyawthanmong.cystic.controller;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import kyawthanmong.cystic.Alarm.AlarmBroadcastReceiver;
 import kyawthanmong.cystic.AppUtils;
 import kyawthanmong.cystic.R;
 import kyawthanmong.cystic.adapter.Settings;
-import kyawthanmong.cystic.delegate.InterfaceIsSurveyAvailable;
-import kyawthanmong.cystic.network.IsSurveyAvailable;
+import kyawthanmong.cystic.adapter.Survey;
 
 
-public class MainActivity extends ActionBarActivity implements InterfaceIsSurveyAvailable
+public class MainActivity extends ActionBarActivity
 
 {
 
@@ -42,14 +43,16 @@ public class MainActivity extends ActionBarActivity implements InterfaceIsSurvey
             startActivity(new Intent(this, LoginActivity.class));
             finish();
         }
-        if (settings.isUserLogin()){
-            new IsSurveyAvailable(this, this);
 
-        }
         if (getSupportActionBar() != null){
             getSupportActionBar().setElevation(0);
 
         }
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String currentTime = format.format(calendar.getTime());
+        Log.i(TAG, currentTime);
+
         setTitle("");
         shouldSetUpView();
         surveyButton.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +78,11 @@ public class MainActivity extends ActionBarActivity implements InterfaceIsSurvey
 
 
         setWeeklyAlarm();
+
+//        Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//        Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+//        r.play();
+//        r.stop();
     }
 
 
@@ -90,6 +98,11 @@ public class MainActivity extends ActionBarActivity implements InterfaceIsSurvey
         textViewSurveyAvailable         = (TextView) findViewById(R.id.textViewSurvey);
         surveyButton.setVisibility(View.INVISIBLE);
         textViewSurveyAvailable.setVisibility(View.INVISIBLE);
+      Survey survey = new Survey(this);
+
+        if (survey.isSurveyAvailable()){
+          surveyButton.setVisibility(View.VISIBLE);
+        }
 
         if (AppUtils.isMondayYet(this)) {
             if(settings.getSurveyAvailableStatus()){
@@ -123,23 +136,5 @@ public class MainActivity extends ActionBarActivity implements InterfaceIsSurvey
     }
 
 
-    @Override
-    public void issurveyavaible(boolean status) {
-        if (AppUtils.isMondayYet(this)) {
-            if (status){
-                Log.i(TAG, "available");
-            }
 
-            settings.setSurveyAvailableStatus(status);
-            shouldSetUpView();
-
-        }
-
-
-    }
-
-    @Override
-    public void failedTogetData() {
-
-    }
 }

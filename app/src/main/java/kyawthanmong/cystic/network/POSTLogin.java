@@ -51,11 +51,9 @@ public class POSTLogin {
 
     private void shouldContactServer(RequestParams params) {
 
-
-        RestClientAdapter.post(Constant.LOGIN_URL, params, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-               Log.i(TAG, String.valueOf(statusCode));
+        RestClientAdapter.getWithoutParam("/user/" + user_id + "/", new AsyncHttpResponseHandler() {
+            @Override public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                Log.i(TAG, String.valueOf(statusCode));
                 if (statusCode == 200){
                     delegate.didLoginSucceess();
                 }else {
@@ -64,13 +62,15 @@ public class POSTLogin {
 
             }
 
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+            @Override public void onFailure(int statusCode, Header[] headers, byte[] responseBody,
+                Throwable error) {
                 delegate.didLoginFail();
-
 
             }
         });
+
+
+       
     }
 
 

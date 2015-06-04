@@ -27,6 +27,11 @@ public class RestClientAdapter {
 
     public static void get(String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
         getClient().get(url, params, responseHandler);
+
+    }
+
+    public static void getWithoutParam(String relativeUrl, AsyncHttpResponseHandler responseHandler){
+        getClient().get(getAbsoluteUrl(relativeUrl), responseHandler);
     }
 
     public static void post(String url, StringEntity stringEntity, AsyncHttpResponseHandler responseHandler) {

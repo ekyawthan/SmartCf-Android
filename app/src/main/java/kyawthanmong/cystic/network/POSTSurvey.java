@@ -5,6 +5,8 @@ package kyawthanmong.cystic.network;
 import android.content.Context;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import org.apache.http.Header;
 import kyawthanmong.cystic.adapter.Constant;
 import kyawthanmong.cystic.adapter.RestClientAdapter;
@@ -39,7 +41,7 @@ public class POSTSurvey {
         params.put("delay_counter", settings.getDelayCounter());
         params.add("choices", this.choices);
         params.add("answers", this.answer);
-        
+
 
         shouldMakeServerRequest(params);
     }
@@ -50,6 +52,10 @@ public class POSTSurvey {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 201){
                     delegate.didSucessedPostServey();
+                    settings.setDelayCounter(0);
+                    Calendar calendar = Calendar.getInstance();
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    settings.setLastSurveyTakenDate(simpleDateFormat.format(calendar.getTime()));
                 }else {
                     delegate.didFailedPostServer();
                 }

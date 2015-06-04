@@ -55,9 +55,6 @@ public class LoginActivity
         if (id != "")
         {
             if (AppUtils.isOnline(getApplicationContext())){
-
-
-
                 new POSTLogin(this, id, this);
                 loadToast.setText("Sign In ......");
                 loadToast.show();
