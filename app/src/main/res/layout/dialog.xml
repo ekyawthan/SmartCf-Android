@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<TextView-->
+
+        <!--android:text="Cf-Smart Survey"-->
+        <!--android:gravity="center"-->
+        <!--android:textColor="#ffff7c13"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textSize="16pt"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--/>-->
+    <!--<TextView-->
+        <!--android:layout_marginTop="20dp"-->
+        <!--android:gravity="center"-->
+        <!--android:text="How are you feeling?"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--/>-->
+    <!--<LinearLayout-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:weightSum="2"-->
+        <!-->-->
+        <!--<Button-->
+            <!--android:id="@+id/takeSurvey"-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:background="#ff61ff33"-->
+            <!--android:text="Take Survey"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="10dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--/>-->
+        <!--<Button-->
+            <!--android:id="@+id/snooze"-->
+            <!--android:background="#ffff1d0e"-->
+            <!--android:textColor="#fff"-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:text="Snooze"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="10dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--/>-->
+    <!--</LinearLayout>-->
+
+
+
+
+</LinearLayout>

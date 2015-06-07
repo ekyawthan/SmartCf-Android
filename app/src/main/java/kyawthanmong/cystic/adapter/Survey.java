@@ -1,6 +1,7 @@
 package kyawthanmong.cystic.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,13 +10,14 @@ import java.util.Date;
 import java.util.TimeZone;
 import kyawthanmong.cystic.AppUtils;
 
-/**
+/*;
  * Created by kyawthan on 6/1/15.
  */
 public class Survey implements Serializable{
   private Settings settings;
   private Context context;
   SimpleDateFormat format;
+  private String TAG = Survey.class.getCanonicalName();
 
   public Survey(Context context){
     this.context = context;
@@ -27,8 +29,11 @@ public class Survey implements Serializable{
 
   public boolean isSurveyAvailable() {
     if (AppUtils.isOnline(context)){
+      Log.i(TAG, "online");
       if (AppUtils.isMondayYet(context)){
+        Log.i(TAG, "Its Monday");
         if(isTodaySurveyNotTakenYet()){
+
           return true;
         }
       }
@@ -57,7 +62,9 @@ public class Survey implements Serializable{
 
     currentDate = calendar.getTime();
     if ((currentDate != null ) && (lastSurveyDate != null)){
+      Log.i(TAG, String.valueOf(currentDate.getTime() - lastSurvey.getTime()));
       if((currentDate.getTime() - lastSurvey.getTime()) > 76400000){
+        Log.i(TAG, "yes its more than one");
         return true;
       }
 
@@ -67,6 +74,17 @@ public class Survey implements Serializable{
     return false;
   }
 
+  public void resetOnSurveyToken (){
+    settings.setDelayCounter(0);
+    Calendar calendar = Calendar.getInstance();
+
+    settings.setLastSurveyTakenDate(format.format(calendar.getTime()));
+  }
+
+  public void settingsOnSnooz(){
+    int counter = settings.getDelayCounter();
+    settings.setDelayCounter(counter + 1);
+  }
 
 
 

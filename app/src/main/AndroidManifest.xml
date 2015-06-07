@@ -27,6 +27,11 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
+            android:name=".controller.MainActivity$TriggeredActivity"
+            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen"
+            android:taskAffinity="" >
+        </activity>
+        <activity
             android:name=".controller.SurveyActivity"
             android:label="@string/title_activity_survey"
             android:screenOrientation="portrait" >

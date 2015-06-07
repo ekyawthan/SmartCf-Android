@@ -6,7 +6,9 @@ import android.content.Context;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import kyawthanmong.cystic.controller.SurveyActivity;
 import org.apache.http.Header;
 import kyawthanmong.cystic.adapter.Constant;
 import kyawthanmong.cystic.adapter.RestClientAdapter;
@@ -35,6 +37,13 @@ public class POSTSurvey {
         shouldPostServey();
     }
 
+    public POSTSurvey(Context context, ArrayList<Integer> answerList,
+        InterfacePostServery delegate) {
+        this.settings = new Settings(context);
+        this.delegate = delegate;
+
+    }
+
     private void shouldPostServey() {
         RequestParams params = new RequestParams();
         params.put("author", settings.getUserId());
@@ -51,7 +60,7 @@ public class POSTSurvey {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 201){
-                    delegate.didSucessedPostServey();
+                    delegate.didSucceedPostSurvey();
                     settings.setDelayCounter(0);
                     Calendar calendar = Calendar.getInstance();
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

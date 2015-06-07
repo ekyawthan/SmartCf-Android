@@ -49,7 +49,7 @@ public class Settings {
     public int getDelayCounter(){return  pref.getInt("delayCounter", 0);}
 
     public void setLastSurveyTakenDate(String date){ this.editor.putString("lastSurveyDate", date).commit();}
-    public String getLastSurveyTakenDate(){return pref.getString("lastSurveyDate", "");}
+    public String getLastSurveyTakenDate(){return pref.getString("lastSurveyDate", "2015-06-04 21:40:46");}
 
 
 }

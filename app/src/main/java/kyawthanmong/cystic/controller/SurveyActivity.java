@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.daimajia.numberprogressbar.NumberProgressBar;
 
+import java.util.ArrayList;
+import kyawthanmong.cystic.adapter.Survey;
 import net.steamcrafted.loadtoast.LoadToast;
 
 import kyawthanmong.cystic.AppUtils;
@@ -34,21 +36,21 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
     String post_choices ;
     String post_answers ;
     LoadToast loadToast;
+    ArrayList<Integer> answerList;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
+        answerList = new ArrayList<>();
 
 
         if (!AppUtils.isMondayYet(this)){
             finish();
         }
         settings = new Settings(this);
-        if (!settings.getSurveyAvailableStatus()){
-            finish();
-        }
+
         setTitle("Survey");
         if (getSupportActionBar() != null){
             getSupportActionBar().setElevation(0);
@@ -79,15 +81,17 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
     public void didResponseToQuestion(View view){
         int i = view.getId();
 
-        if (Counter == 0) {
-            post_answers = getResources().getResourceEntryName(i);
-            post_choices = String.valueOf(Counter + 1);
+        post_answers = getResources().getResourceEntryName(i);
+
+        if (post_answers.equals("no")){
+            answerList.add(0);
+        }else {
+            answerList.add(1);
+
+
         }
-        else
-        {
-            post_answers = post_answers + " , " + getResources().getResourceEntryName(i);
-            post_choices = post_choices + " ," + String.valueOf(Counter + 1);
-        }
+
+
 
         Counter = Counter + 1;
         if (Counter < 12 ){
@@ -99,7 +103,7 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
 
         }
         Log.i(post_answers, post_choices);
-        new POSTSurvey(this, post_choices, post_answers, this);
+        new POSTSurvey(this, answerList, this);
         loadToast.setText("Posting Survey");
         loadToast.show();
 
@@ -129,9 +133,9 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
 
 
     @Override
-    public void didSucessedPostServey() {
+    public void didSucceedPostSurvey() {
         loadToast.success();
-        settings.setSurveyAvailableStatus(false);
+        new Survey(this).resetOnSurveyToken();
         finish();
 
     }
@@ -139,6 +143,7 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
     @Override
     public void didFailedPostServer() {
         loadToast.error();
+        finish();
 
     }
 }
