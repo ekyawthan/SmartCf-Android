@@ -12,7 +12,7 @@
         android:textSize="20pt"
         android:textColor="@android:color/holo_orange_dark"
         android:id="@+id/greeeting_text"
-        android:text= "Welcome to Wall Survey"
+        android:text= "CF-Smart"
         android:singleLine="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

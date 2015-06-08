@@ -43,17 +43,6 @@
             android:exported="true" >
         </receiver>
 
-        <service
-            android:name=".Alarm.AlarmService"
-            android:enabled="true"
-            android:exported="true" >
-        </service>
-
-        <receiver
-            android:name=".Alarm.FiveTimeAlarmBroadcastReceiver"
-            android:enabled="true"
-            android:exported="true" >
-        </receiver>
     </application>
 
 </manifest>

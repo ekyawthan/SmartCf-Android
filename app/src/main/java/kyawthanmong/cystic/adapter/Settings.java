@@ -51,5 +51,12 @@ public class Settings {
     public void setLastSurveyTakenDate(String date){ this.editor.putString("lastSurveyDate", date).commit();}
     public String getLastSurveyTakenDate(){return pref.getString("lastSurveyDate", "2015-06-04 21:40:46");}
 
+    public void reset(){
+        setUserLoginStatus(false);
+        setLastSurveyTakenDate("2015-06-04 21:40:46");
+        setDelayCounter(0);
+
+    }
+
 
 }

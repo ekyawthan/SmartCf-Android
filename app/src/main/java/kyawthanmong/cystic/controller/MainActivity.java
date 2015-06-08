@@ -1,12 +1,8 @@
 package kyawthanmong.cystic.controller;
-
-
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-
 import android.content.Context;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Ringtone;
@@ -21,7 +17,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.afollestad.materialdialogs.MaterialDialog;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -51,6 +46,7 @@ public class MainActivity extends ActionBarActivity
 
         this.settings = new Settings(this);
 
+        Log.i(TAG, String.valueOf(settings.getUserId()));
         if(new Survey(this).isSurveyAvailable()){
             Log.i(TAG, "survey available");
         }
@@ -81,18 +77,15 @@ public class MainActivity extends ActionBarActivity
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                settings.setUserLoginStatus(false);
-                settings.setSurveyTakenStatus(false);
-                settings.setSurveyAvailableStatus(false);
+                settings.reset();
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 finish();
             }
         });
         if(settings.isUserLogin()){
-            AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
-            setAlarm(4, manager, this);
-        }
+            setWeeklyAlarm();
 
+        }
 
 
     }
@@ -124,6 +117,12 @@ public class MainActivity extends ActionBarActivity
 
     private void setWeeklyAlarm(){
         Calendar monday = Calendar.getInstance();
+        monday.set(Calendar.DAY_OF_WEEK, 2);
+        monday.set(Calendar.HOUR, 12);
+        monday.set(Calendar.MINUTE, 0);
+        monday.set(Calendar.SECOND, 0);
+        monday.set(Calendar.MILLISECOND, 0);
+
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Intent myIntent = new Intent(MainActivity.this, AlarmBroadcastReceiver.class);
 
@@ -159,11 +158,9 @@ public class MainActivity extends ActionBarActivity
             wind.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
             wind.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
-
-            showCallbacks(context);
-
-
-
+            if (new Survey(this).isTodaySurveyNotTakenYet()){
+                showCallbacks(context);
+            }
         }
 
         private void showCallbacks(final Context context) {
@@ -173,7 +170,7 @@ public class MainActivity extends ActionBarActivity
                     final Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
                     r.play();
 
-            new MaterialDialog.Builder(this).title("Cf-Smart Survey")
+            new MaterialDialog.Builder(this).title("CF-Smart Survey")
                 .content("How are You  Feeling")
                 .positiveText("Take Survey")
 
@@ -197,7 +194,7 @@ public class MainActivity extends ActionBarActivity
                     @Override public void onNegative(MaterialDialog dialog) {
                         if(settings.getDelayCounter()<6){
                             new Survey(context).settingsOnSnooz();
-                            setAlarm(10, ((AlarmManager) getSystemService(ALARM_SERVICE)), context);
+                            setAlarm(60 * 30, ((AlarmManager) getSystemService(ALARM_SERVICE)), context);
 
                         }{
                             settings.setDelayCounter(0);
@@ -219,7 +216,7 @@ public class MainActivity extends ActionBarActivity
         // create the pending intent
         Intent intent = new Intent(context, TriggeredActivity.class);
         // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 2,
             intent, PendingIntent.FLAG_ONE_SHOT);
         // get the alarm manager, and scedule an alarm that triggers my
         // activity
@@ -228,9 +225,6 @@ public class MainActivity extends ActionBarActivity
         Toast.makeText(context, "Timer set to " + seconds + " seconds.",
             Toast.LENGTH_SHORT).show();
     }
-
-
-
 
 
 }

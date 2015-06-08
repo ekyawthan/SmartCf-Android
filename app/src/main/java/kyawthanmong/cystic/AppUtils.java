@@ -33,7 +33,7 @@ public class AppUtils {
     public static boolean isMondayYet(Context context){
         Calendar calendar = Calendar.getInstance();
 
-       return (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY);
+       return (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY);
     }
 }
 

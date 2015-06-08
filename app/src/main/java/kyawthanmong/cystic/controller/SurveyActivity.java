@@ -33,8 +33,7 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
     String post_delaycount = "Some random";
     private Settings settings ;
 
-    String post_choices ;
-    String post_answers ;
+
     LoadToast loadToast;
     ArrayList<Integer> answerList;
 
@@ -81,17 +80,13 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
     public void didResponseToQuestion(View view){
         int i = view.getId();
 
-        post_answers = getResources().getResourceEntryName(i);
+        String post_answers = getResources().getResourceEntryName(i);
 
         if (post_answers.equals("no")){
             answerList.add(0);
         }else {
             answerList.add(1);
-
-
         }
-
-
 
         Counter = Counter + 1;
         if (Counter < 12 ){
@@ -102,11 +97,10 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
             return;
 
         }
-        Log.i(post_answers, post_choices);
+
         new POSTSurvey(this, answerList, this);
         loadToast.setText("Posting Survey");
         loadToast.show();
-
 
 
 
