@@ -110,6 +110,7 @@ public class POSTSurvey {
         }
         try {
             params.put("delay_counter", settings.getDelayCounter());
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

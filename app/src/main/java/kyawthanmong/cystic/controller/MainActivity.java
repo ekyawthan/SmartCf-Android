@@ -117,18 +117,18 @@ public class MainActivity extends ActionBarActivity
 
     private void setWeeklyAlarm(){
         Calendar monday = Calendar.getInstance();
-        monday.set(Calendar.DAY_OF_WEEK, 2);
+        // for only monday
+        //monday.set(Calendar.DAY_OF_WEEK, 2);
         monday.set(Calendar.HOUR, 12);
-        monday.set(Calendar.MINUTE, 0);
+        monday.set(Calendar.MINUTE, 00);
         monday.set(Calendar.SECOND, 0);
         monday.set(Calendar.MILLISECOND, 0);
-
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Log.i("setting alarm: ", format.format(monday.getTime()));
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Intent myIntent = new Intent(MainActivity.this, AlarmBroadcastReceiver.class);
-
         pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, 0);
-
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, monday.getTimeInMillis(),alarmManager.INTERVAL_DAY * 7,pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, monday.getTimeInMillis(),alarmManager.INTERVAL_DAY ,pendingIntent);
 
     }
 
@@ -163,6 +163,10 @@ public class MainActivity extends ActionBarActivity
             }
         }
 
+        @Override public void onBackPressed() {
+            return;
+        }
+
         private void showCallbacks(final Context context) {
 
                     Uri notification = RingtoneManager.getDefaultUri(
@@ -192,11 +196,17 @@ public class MainActivity extends ActionBarActivity
                     }
 
                     @Override public void onNegative(MaterialDialog dialog) {
-                        if(settings.getDelayCounter()<6){
+                        if(settings.getDelayCounter()<5){
                             new Survey(context).settingsOnSnooz();
-                            setAlarm(60 * 30, ((AlarmManager) getSystemService(ALARM_SERVICE)), context);
+                            Log.i("Delay Counter", String.valueOf(settings.getDelayCounter()));
+                            setAlarm(60 * 30, ((AlarmManager) getSystemService(ALARM_SERVICE)),
+                                context);
+                            startActivity(new Intent(context, MainActivity.class));
+                            finish();
 
-                        }{
+                        }
+                        else
+                        {
                             settings.setDelayCounter(0);
                             // set email
                         }
@@ -222,9 +232,8 @@ public class MainActivity extends ActionBarActivity
         // activity
         alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()
             + seconds * 1000, pendingIntent);
-        Toast.makeText(context, "Timer set to " + seconds + " seconds.",
+        Toast.makeText(context, "Timer set to  30 Min.",
             Toast.LENGTH_SHORT).show();
     }
-
 
 }

@@ -62,7 +62,7 @@ public class Survey implements Serializable{
     currentDate = calendar.getTime();
     if ((currentDate != null ) && (lastSurveyDate != null)){
       Log.i(TAG, String.valueOf(currentDate.getTime() - lastSurvey.getTime()));
-      if((currentDate.getTime() - lastSurvey.getTime()) > 76400000){
+      if((currentDate.getTime() - lastSurvey.getTime()) > 66400000){
         Log.i(TAG, "yes its more than one");
         return true;
       }

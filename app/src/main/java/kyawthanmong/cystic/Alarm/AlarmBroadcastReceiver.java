@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import kyawthanmong.cystic.adapter.Settings;
+import kyawthanmong.cystic.adapter.Survey;
 import kyawthanmong.cystic.controller.MainActivity;
 
 public class AlarmBroadcastReceiver extends BroadcastReceiver
@@ -26,13 +27,17 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver
     public void onReceive(Context context, Intent intent)
     {
         Log.i(TAG, "received");
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(context.ALARM_SERVICE);
 
-        Intent i = new Intent(context, MainActivity.TriggeredActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 1,
-            i, PendingIntent.FLAG_ONE_SHOT);
-        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() ,
-            pendingIntent);
+        if(new Survey(context).isTodaySurveyNotTakenYet()){
+            AlarmManager alarmManager = (AlarmManager) context.getSystemService(context.ALARM_SERVICE);
+            Intent i = new Intent(context, MainActivity.TriggeredActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 1,
+                i, PendingIntent.FLAG_ONE_SHOT);
+            alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() ,
+                pendingIntent);
+
+        }
+
 
 
     }

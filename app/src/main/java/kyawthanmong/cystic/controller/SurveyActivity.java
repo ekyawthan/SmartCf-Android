@@ -97,7 +97,8 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
             return;
 
         }
-
+        yesButton.setEnabled(false);
+        noButton.setEnabled(false);
         new POSTSurvey(this, answerList, this);
         loadToast.setText("Posting Survey");
         loadToast.show();
@@ -117,10 +118,10 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
             "In the past week have you had\t increased fatigue or lethargy",
             "In the past week have you had\t a fever",
             "In the past week have you had\t a loss of appetite or weight",
-            " In the past week have you had\t sinus pain or tenderness",
+            "In the past week have you had\t sinus pain or tenderness",
             "In the past week have you had\t new or increased chest pain",
             "In the past week have\t you felt low in mood",
-            "In the past week have\t felt worried"
+            "In the past week have\t you felt worried"
 
 
     };
