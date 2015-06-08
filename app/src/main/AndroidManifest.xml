@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="kyawthanmong.cystic" >
+    package="kyawthanmong.cfsmart" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".controller.MainActivity"
+            android:name="kyawthanmong.cfsmart.controller.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -22,23 +22,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".controller.LoginActivity"
+            android:name="kyawthanmong.cfsmart.controller.LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".controller.MainActivity$TriggeredActivity"
+            android:name="kyawthanmong.cfsmart.controller.MainActivity$TriggeredActivity"
             android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen"
             android:taskAffinity="" >
         </activity>
         <activity
-            android:name=".controller.SurveyActivity"
+            android:name="kyawthanmong.cfsmart.controller.SurveyActivity"
             android:label="@string/title_activity_survey"
             android:screenOrientation="portrait" >
         </activity>
 
         <receiver
-            android:name=".Alarm.AlarmBroadcastReceiver"
+            android:name="kyawthanmong.cfsmart.Alarm.AlarmBroadcastReceiver"
             android:enabled="true"
             android:exported="true" >
         </receiver>

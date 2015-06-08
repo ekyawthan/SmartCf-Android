@@ -1,4 +1,4 @@
-package kyawthanmong.cystic.Alarm;
+package kyawthanmong.cfsmart.Alarm;
 
 
 
@@ -10,9 +10,9 @@ import android.content.Context;
 
 import android.content.Intent;
 import android.util.Log;
-import kyawthanmong.cystic.adapter.Settings;
-import kyawthanmong.cystic.adapter.Survey;
-import kyawthanmong.cystic.controller.MainActivity;
+import kyawthanmong.cfsmart.adapter.Settings;
+import kyawthanmong.cfsmart.adapter.Survey;
+import kyawthanmong.cfsmart.controller.MainActivity;
 
 public class AlarmBroadcastReceiver extends BroadcastReceiver
 {

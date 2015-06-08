@@ -1,4 +1,4 @@
-package kyawthanmong.cystic.controller;
+package kyawthanmong.cfsmart.controller;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -20,11 +20,11 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import kyawthanmong.cystic.Alarm.AlarmBroadcastReceiver;
-import kyawthanmong.cystic.AppUtils;
-import kyawthanmong.cystic.R;
-import kyawthanmong.cystic.adapter.Settings;
-import kyawthanmong.cystic.adapter.Survey;
+import kyawthanmong.cfsmart.Alarm.AlarmBroadcastReceiver;
+import kyawthanmong.cfsmart.AppUtils;
+import kyawthanmong.cfsmart.R;
+import kyawthanmong.cfsmart.adapter.Settings;
+import kyawthanmong.cfsmart.adapter.Survey;
 
 
 public class MainActivity extends ActionBarActivity

@@ -1,21 +1,19 @@
-package kyawthanmong.cystic.controller;
+package kyawthanmong.cfsmart.controller;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import net.steamcrafted.loadtoast.LoadToast;
 
-import kyawthanmong.cystic.AppUtils;
-import kyawthanmong.cystic.R;
-import kyawthanmong.cystic.adapter.Settings;
-import kyawthanmong.cystic.delegate.InterfaceLogin;
-import kyawthanmong.cystic.network.POSTLogin;
+import kyawthanmong.cfsmart.AppUtils;
+import kyawthanmong.cfsmart.R;
+import kyawthanmong.cfsmart.adapter.Settings;
+import kyawthanmong.cfsmart.delegate.InterfaceLogin;
+import kyawthanmong.cfsmart.network.POSTLogin;
 
 
 public class LoginActivity

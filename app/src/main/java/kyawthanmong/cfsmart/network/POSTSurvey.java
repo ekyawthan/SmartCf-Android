@@ -1,22 +1,16 @@
-package kyawthanmong.cystic.network;
+package kyawthanmong.cfsmart.network;
 
 
 
 import android.content.Context;
 import android.util.Log;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 import java.io.UnsupportedEncodingException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
-import kyawthanmong.cystic.controller.SurveyActivity;
 import org.apache.http.Header;
-import kyawthanmong.cystic.adapter.Constant;
-import kyawthanmong.cystic.adapter.RestClientAdapter;
-import kyawthanmong.cystic.adapter.Settings;
-import kyawthanmong.cystic.delegate.InterfacePostServery;
+import kyawthanmong.cfsmart.adapter.RestClientAdapter;
+import kyawthanmong.cfsmart.adapter.Settings;
+import kyawthanmong.cfsmart.delegate.InterfacePostServery;
 import org.apache.http.entity.StringEntity;
 import org.json.JSONException;
 import org.json.JSONObject;

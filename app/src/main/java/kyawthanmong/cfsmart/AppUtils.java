@@ -1,4 +1,4 @@
-package kyawthanmong.cystic;
+package kyawthanmong.cfsmart;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

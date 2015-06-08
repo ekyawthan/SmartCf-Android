@@ -1,4 +1,4 @@
-package kyawthanmong.cystic.adapter;
+package kyawthanmong.cfsmart.adapter;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,7 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import kyawthanmong.cystic.AppUtils;
+import kyawthanmong.cfsmart.AppUtils;
 
 /*;
  * Created by kyawthan on 6/1/15.

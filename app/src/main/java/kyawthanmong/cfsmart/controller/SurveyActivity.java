@@ -1,10 +1,7 @@
-package kyawthanmong.cystic.controller;
+package kyawthanmong.cfsmart.controller;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,14 +9,14 @@ import android.widget.TextView;
 import com.daimajia.numberprogressbar.NumberProgressBar;
 
 import java.util.ArrayList;
-import kyawthanmong.cystic.adapter.Survey;
+import kyawthanmong.cfsmart.adapter.Survey;
 import net.steamcrafted.loadtoast.LoadToast;
 
-import kyawthanmong.cystic.AppUtils;
-import kyawthanmong.cystic.R;
-import kyawthanmong.cystic.adapter.Settings;
-import kyawthanmong.cystic.delegate.InterfacePostServery;
-import kyawthanmong.cystic.network.POSTSurvey;
+import kyawthanmong.cfsmart.AppUtils;
+import kyawthanmong.cfsmart.R;
+import kyawthanmong.cfsmart.adapter.Settings;
+import kyawthanmong.cfsmart.delegate.InterfacePostServery;
+import kyawthanmong.cfsmart.network.POSTSurvey;
 
 
 public class SurveyActivity extends ActionBarActivity implements InterfacePostServery

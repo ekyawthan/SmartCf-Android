@@ -1,4 +1,4 @@
-package kyawthanmong.cystic;
+package kyawthanmong.cfsmart;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

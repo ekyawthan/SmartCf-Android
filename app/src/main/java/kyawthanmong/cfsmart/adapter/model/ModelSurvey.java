@@ -1,4 +1,4 @@
-package kyawthanmong.cystic.adapter.model;
+package kyawthanmong.cfsmart.adapter.model;
 
 import com.google.gson.annotations.SerializedName;
 

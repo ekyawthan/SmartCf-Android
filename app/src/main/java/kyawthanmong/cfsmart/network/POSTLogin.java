@@ -1,22 +1,19 @@
-package kyawthanmong.cystic.network;
+package kyawthanmong.cfsmart.network;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
 
 import org.apache.http.Header;
 
-import kyawthanmong.cystic.adapter.Constant;
-import kyawthanmong.cystic.adapter.RestClientAdapter;
-import kyawthanmong.cystic.adapter.Settings;
-import kyawthanmong.cystic.adapter.model.LoginResponseModel;
-import kyawthanmong.cystic.delegate.InterfaceLogin;
+import kyawthanmong.cfsmart.adapter.RestClientAdapter;
+import kyawthanmong.cfsmart.adapter.Settings;
+import kyawthanmong.cfsmart.delegate.InterfaceLogin;
 
 /**
  * Created by kyawthan on 4/15/15.

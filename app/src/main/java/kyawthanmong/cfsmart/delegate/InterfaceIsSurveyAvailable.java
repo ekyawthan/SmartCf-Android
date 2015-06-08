@@ -1,4 +1,4 @@
-package kyawthanmong.cystic.delegate;
+package kyawthanmong.cfsmart.delegate;
 
 public interface InterfaceIsSurveyAvailable {
 

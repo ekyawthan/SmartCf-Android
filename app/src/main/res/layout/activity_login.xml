@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="kyawthanmong.cystic.controller.LoginActivity">
+    tools:context="kyawthanmong.cfsmart.controller.LoginActivity">
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/userId"
         android:inputType="number"
