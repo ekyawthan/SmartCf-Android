@@ -119,10 +119,11 @@ public class MainActivity extends ActionBarActivity
         Calendar monday = Calendar.getInstance();
         // for only monday
         //monday.set(Calendar.DAY_OF_WEEK, 2);
-        monday.set(Calendar.HOUR, 12);
-        monday.set(Calendar.MINUTE, 00);
+        monday.set(Calendar.HOUR, 0);
+        monday.set(Calendar.MINUTE, 0);
         monday.set(Calendar.SECOND, 0);
         monday.set(Calendar.MILLISECOND, 0);
+        monday.set(Calendar.AM_PM, Calendar.PM);
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Log.i("setting alarm: ", format.format(monday.getTime()));
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
