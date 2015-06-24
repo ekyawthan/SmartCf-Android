@@ -12,26 +12,24 @@ import kyawthanmong.cfsmart.AppUtils;
 /*;
  * Created by kyawthan on 6/1/15.
  */
-public class Survey implements Serializable{
+public class Survey implements Serializable {
   private Settings settings;
   private Context context;
   SimpleDateFormat format;
   private String TAG = Survey.class.getCanonicalName();
 
-  public Survey(Context context){
+  public Survey(Context context) {
     this.context = context;
     this.settings = new Settings(context);
     this.format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-
   }
 
   public boolean isSurveyAvailable() {
-    if (AppUtils.isOnline(context)){
+    if (AppUtils.isOnline(context)) {
       Log.i(TAG, "online");
-      if (AppUtils.isMondayYet(context)){
+      if (AppUtils.isMondayYet(context)) {
         Log.i(TAG, "Its Monday");
-        if(isTodaySurveyNotTakenYet()){
+        if (isTodaySurveyNotTakenYet()) {
 
           return true;
         }
@@ -43,7 +41,7 @@ public class Survey implements Serializable{
 
   public boolean isTodaySurveyNotTakenYet() {
 
-    if(isTimeDifferentMoreThanOneDay(settings.getLastSurveyTakenDate())){
+    if (isTimeDifferentMoreThanOneDay(settings.getLastSurveyTakenDate())) {
       return true;
     }
 
@@ -60,31 +58,26 @@ public class Survey implements Serializable{
     Calendar calendar = Calendar.getInstance();
 
     currentDate = calendar.getTime();
-    if ((currentDate != null ) && (lastSurveyDate != null)){
+    if ((currentDate != null) && (lastSurveyDate != null)) {
       Log.i(TAG, String.valueOf(currentDate.getTime() - lastSurvey.getTime()));
-      if((currentDate.getTime() - lastSurvey.getTime()) > 66400000){
+      if ((currentDate.getTime() - lastSurvey.getTime()) > 66400000) {
         Log.i(TAG, "yes its more than one");
         return true;
       }
-
     }
-
 
     return false;
   }
 
-  public void resetOnSurveyToken (){
+  public void resetOnSurveyToken() {
     settings.setDelayCounter(0);
     Calendar calendar = Calendar.getInstance();
 
     settings.setLastSurveyTakenDate(format.format(calendar.getTime()));
   }
 
-  public void settingsOnSnooz(){
+  public void settingsOnSnooz() {
     int counter = settings.getDelayCounter();
     settings.setDelayCounter(counter + 1);
   }
-
-
-
 }

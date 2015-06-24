@@ -5,37 +5,35 @@ import android.net.ConnectivityManager;
 
 import java.util.Calendar;
 
-
 /**
  * Created by kyawthan on 5/20/15.
  */
 public class AppUtils {
 
+  public AppUtils() {
+  }
 
-    public AppUtils(){}
+  public static String getVersionName() {
 
-    public static String getVersionName(){
+    return BuildConfig.VERSION_NAME + "." + BuildConfig.VERSION_CODE;
+  }
 
-        return BuildConfig.VERSION_NAME + "." + BuildConfig.VERSION_CODE;
-
+  public static boolean isOnline(Context ctx) {
+    ConnectivityManager cm =
+        (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
+    if (cm.getActiveNetworkInfo() == null) {
+      return false;
     }
 
-    public static boolean isOnline(Context ctx) {
-        ConnectivityManager cm = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if( cm.getActiveNetworkInfo() == null ) {
-            return false;
+    return cm.getActiveNetworkInfo().isConnectedOrConnecting();
+  }
 
-        }
+  public static boolean isMondayYet(Context context) {
+    Calendar calendar = Calendar.getInstance();
 
-        return cm.getActiveNetworkInfo().isConnectedOrConnecting();
-    }
-
-    public static boolean isMondayYet(Context context){
-        Calendar calendar = Calendar.getInstance();
-
-        // for only monday
-       // return (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY);
-        return true;
-    }
+    // for only monday
+    // return (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY);
+    return true;
+  }
 }
 

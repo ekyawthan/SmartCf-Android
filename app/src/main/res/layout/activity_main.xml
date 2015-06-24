@@ -12,7 +12,7 @@
         android:textSize="20pt"
         android:textColor="@android:color/holo_orange_dark"
         android:id="@+id/greeeting_text"
-        android:text= "CF-Smart"
+        android:text= "SMART-CF"
         android:singleLine="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
