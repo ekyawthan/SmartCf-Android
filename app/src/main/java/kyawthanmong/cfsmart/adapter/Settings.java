@@ -10,6 +10,7 @@ public class Settings {
 
   private SharedPreferences pref;
   private SharedPreferences.Editor editor;
+  //
 
   public Settings(Context context) {
     pref = context.getSharedPreferences("com.owaisnaeem", Context.MODE_PRIVATE);

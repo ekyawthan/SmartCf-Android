@@ -1,8 +1,8 @@
 package kyawthanmong.cfsmart.controller;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import net.steamcrafted.loadtoast.LoadToast;
@@ -13,7 +13,7 @@ import kyawthanmong.cfsmart.delegate.InterfaceLogin;
 import kyawthanmong.cfsmart.network.POSTLogin;
 
 public class LoginActivity
-    extends ActionBarActivity
+    extends AppCompatActivity
     implements InterfaceLogin
 
 {

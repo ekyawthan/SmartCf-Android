@@ -1,7 +1,10 @@
 package kyawthanmong.cfsmart.controller;
 
-import android.support.v7.app.ActionBarActivity;
+
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,7 +21,7 @@ import kyawthanmong.cfsmart.adapter.Settings;
 import kyawthanmong.cfsmart.delegate.InterfacePostServery;
 import kyawthanmong.cfsmart.network.POSTSurvey;
 
-public class SurveyActivity extends ActionBarActivity implements InterfacePostServery
+public class SurveyActivity extends AppCompatActivity implements InterfacePostServery
 
 {
 
@@ -40,10 +43,14 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
     if (!AppUtils.isMondayYet(this)) {
       finish();
     }
+
+    final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_from_survey);
+    setSupportActionBar(toolbar);
     settings = new Settings(this);
 
-    setTitle("Survey");
+    setTitle("SMART-CF Questionnaire");
     if (getSupportActionBar() != null) {
+      getSupportActionBar().setDisplayHomeAsUpEnabled(true);
       getSupportActionBar().setElevation(0);
     }
     this.loadToast = new LoadToast(this);
@@ -51,12 +58,21 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
     shouldSetupView();
   }
 
+  @Override public boolean onOptionsItemSelected(MenuItem item) {
+
+    if (item.getItemId() == android.R.id.home)
+    {
+      finish();
+    }
+    return super.onOptionsItemSelected(item);
+  }
+
   private void shouldSetupView() {
-    currentStatus = (TextView) findViewById(R.id.textViewCurrent);
-    currentSurveyQuestion = (TextView) findViewById(R.id.surveyQuestion);
-    numberProgressBar = (NumberProgressBar) findViewById(R.id.numberbarForCurrent);
-    yesButton = (Button) findViewById(R.id.yes);
-    noButton = (Button) findViewById(R.id.no);
+    currentStatus           = (TextView) findViewById(R.id.textViewCurrent);
+    currentSurveyQuestion   = (TextView) findViewById(R.id.surveyQuestion);
+    numberProgressBar       = (NumberProgressBar) findViewById(R.id.numberbarForCurrent);
+    yesButton               = (Button) findViewById(R.id.yes);
+    noButton                = (Button) findViewById(R.id.no);
 
     currentSurveyQuestion.setText(SurveyQuestions[0]);
     currentStatus.setText("Question 1 of  12 ");
@@ -86,7 +102,7 @@ public class SurveyActivity extends ActionBarActivity implements InterfacePostSe
     yesButton.setEnabled(false);
     noButton.setEnabled(false);
     new POSTSurvey(this, answerList, this);
-    loadToast.setText("Posting Survey");
+    loadToast.setText("Sending Questionnaire");
     loadToast.show();
   }
 
