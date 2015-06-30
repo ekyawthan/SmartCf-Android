@@ -110,7 +110,7 @@ public class MainActivity
       Log.i(TAG, "it's monday");
       int numOfWeek = monday.get(Calendar.WEEK_OF_YEAR);
       monday.set(Calendar.WEEK_OF_YEAR, numOfWeek + 1);
-      
+      //monday.set(Calendar.DAY_OF_WEEK, 2);
       monday.set(Calendar.HOUR, 0);
       monday.set(Calendar.MINUTE, 0);
       monday.set(Calendar.SECOND, 0);

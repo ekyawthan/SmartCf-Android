@@ -4,17 +4,15 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-
 import android.content.Intent;
 import android.util.Log;
-import kyawthanmong.cfsmart.adapter.Settings;
 import kyawthanmong.cfsmart.adapter.Survey;
 import kyawthanmong.cfsmart.controller.MainActivity;
+
 
 public class AlarmBroadcastReceiver extends BroadcastReceiver {
 
   private String TAG = AlarmBroadcastReceiver.class.getCanonicalName();
-  private Settings settings;
 
   public AlarmBroadcastReceiver() {
 
