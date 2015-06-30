@@ -28,6 +28,7 @@ public class LoginActivity
     setContentView(R.layout.activity_login);
     this.settings = new Settings(this);
     this.loadToast = new LoadToast(this);
+    setTitle("Smart-CF");
     shouldSetupView();
   }
 

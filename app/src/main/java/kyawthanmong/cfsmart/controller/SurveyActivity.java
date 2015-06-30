@@ -4,11 +4,13 @@ package kyawthanmong.cfsmart.controller;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+
 import android.widget.TextView;
 
+import at.markushi.ui.CircleButton;
 import com.daimajia.numberprogressbar.NumberProgressBar;
 
 import java.util.ArrayList;
@@ -27,7 +29,7 @@ public class SurveyActivity extends AppCompatActivity implements InterfacePostSe
 
   private TextView currentStatus, currentSurveyQuestion;
   private NumberProgressBar numberProgressBar;
-  Button yesButton, noButton;
+  CircleButton yesButton, noButton;
   int Counter = 0;
   String post_delaycount = "Some random";
   private Settings settings;
@@ -47,8 +49,9 @@ public class SurveyActivity extends AppCompatActivity implements InterfacePostSe
     final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_from_survey);
     setSupportActionBar(toolbar);
     settings = new Settings(this);
+    setTitle("Home");
 
-    setTitle("SMART-CF Questionnaire");
+
     if (getSupportActionBar() != null) {
       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
       getSupportActionBar().setElevation(0);
@@ -71,8 +74,8 @@ public class SurveyActivity extends AppCompatActivity implements InterfacePostSe
     currentStatus           = (TextView) findViewById(R.id.textViewCurrent);
     currentSurveyQuestion   = (TextView) findViewById(R.id.surveyQuestion);
     numberProgressBar       = (NumberProgressBar) findViewById(R.id.numberbarForCurrent);
-    yesButton               = (Button) findViewById(R.id.yes);
-    noButton                = (Button) findViewById(R.id.no);
+    yesButton               = (CircleButton) findViewById(R.id.yes);
+    noButton                = (CircleButton) findViewById(R.id.no);
 
     currentSurveyQuestion.setText(SurveyQuestions[0]);
     currentStatus.setText("Question 1 of  12 ");

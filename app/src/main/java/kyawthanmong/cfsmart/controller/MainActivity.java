@@ -105,20 +105,38 @@ public class MainActivity
 
   private void setWeeklyAlarm() {
     Calendar monday = Calendar.getInstance();
+
+    if ((monday.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY)) {
+      Log.i(TAG, "it's monday");
+      int numOfWeek = monday.get(Calendar.WEEK_OF_YEAR);
+      monday.set(Calendar.WEEK_OF_YEAR, numOfWeek + 1);
+      
+      monday.set(Calendar.HOUR, 0);
+      monday.set(Calendar.MINUTE, 0);
+      monday.set(Calendar.SECOND, 0);
+      monday.set(Calendar.MILLISECOND, 0);
+      monday.set(Calendar.AM_PM, Calendar.PM);
+
+    } else {
+      monday.set(Calendar.DAY_OF_WEEK, 2);
+      monday.set(Calendar.HOUR, 0);
+      monday.set(Calendar.MINUTE, 0);
+      monday.set(Calendar.SECOND, 0);
+      monday.set(Calendar.MILLISECOND, 0);
+      monday.set(Calendar.AM_PM, Calendar.PM);
+
+    }
+
     // for only monday
-    //monday.set(Calendar.DAY_OF_WEEK, 2);
-    monday.set(Calendar.HOUR, 0);
-    monday.set(Calendar.MINUTE, 0);
-    monday.set(Calendar.SECOND, 0);
-    monday.set(Calendar.MILLISECOND, 0);
-    monday.set(Calendar.AM_PM, Calendar.PM);
+
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     Log.i("setting alarm: ", format.format(monday.getTime()));
     AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
     Intent myIntent = new Intent(MainActivity.this, AlarmBroadcastReceiver.class);
     pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, 0);
-    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, monday.getTimeInMillis(),
-        alarmManager.INTERVAL_DAY, pendingIntent);
+
+    alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, monday.getTimeInMillis(),
+        alarmManager.INTERVAL_DAY * 7, pendingIntent);
   }
 
   @Override public void onBackPressed() {
@@ -161,9 +179,8 @@ public class MainActivity
       final Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
       r.play();
 
-      new MaterialDialog.Builder(this).title("CF-Smart Survey")
-          .content("How are You  Feeling")
-          .positiveText("Take Survey")
+      new MaterialDialog.Builder(this).title("Smart-CF Questionnaire")
+          .positiveText("Begin Questionnaire")
 
           .autoDismiss(false)
 
@@ -185,7 +202,6 @@ public class MainActivity
             @Override public void onNegative(MaterialDialog dialog) {
               if (settings.getDelayCounter() < 5) {
                 new Survey(context).settingsOnSnooz();
-                Log.i("Delay Counter", String.valueOf(settings.getDelayCounter()));
                 setAlarm(60 * 30, ((AlarmManager) getSystemService(ALARM_SERVICE)), context);
                 startActivity(new Intent(context, MainActivity.class));
                 finish();

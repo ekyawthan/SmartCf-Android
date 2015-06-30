@@ -5,29 +5,42 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="20pt"
-        android:textColor="@android:color/holo_orange_dark"
-        android:id="@+id/greeeting_text"
-        android:text= "SMART-CF"
-        android:singleLine="false"
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/buttonSurveyXml"
-        android:background="@android:color/transparent"
-        android:layout_marginTop="40dp"
-        android:layout_below="@+id/greeeting_text"
-        android:text="Take Survey"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="20pt"
+            android:textColor="@android:color/holo_orange_dark"
+            android:id="@+id/greeeting_text"
+            android:text= "SMART-CF"
+            android:singleLine="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/buttonSurveyXml"
+            android:background="#3F51B5"
+            android:textColor="#fff"
+            android:layout_marginTop="40dp"
+            android:layout_below="@+id/greeeting_text"
+            android:text="Begin Questionaire"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
 
     <Button
         android:background="@android:color/transparent"
         android:textColor="#db151041"
-        android:layout_width="wrap_content"
+
+        android:layout_width="200dip"
         android:layout_height="wrap_content"
         android:text="Log Out"
         android:id="@+id/logOutButton"
@@ -36,10 +49,10 @@
 
     <TextView
         android:gravity="center"
-        android:layout_marginTop="50dp"
         android:textStyle="bold"
-        android:text="Survey Not Available, Come back On Monday"
-        android:layout_below="@+id/buttonSurveyXml"
+        android:textSize="24dp"
+        android:layout_above="@+id/logOutButton"
+        android:text="Thank You for Completing this Questionaire"
         android:id="@+id/textViewSurvey"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

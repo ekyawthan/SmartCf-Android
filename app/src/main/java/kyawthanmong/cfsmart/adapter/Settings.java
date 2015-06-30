@@ -2,6 +2,7 @@ package kyawthanmong.cfsmart.adapter;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 
 /**
  * Created by owais on 4/15/15.
@@ -12,8 +13,12 @@ public class Settings {
   private SharedPreferences.Editor editor;
   //
 
+  public static Settings sharedInstance(Context context){
+    return  new Settings(context);
+  }
+
   public Settings(Context context) {
-    pref = context.getSharedPreferences("com.owaisnaeem", Context.MODE_PRIVATE);
+    pref = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
     editor = pref.edit();
   }
 
@@ -75,8 +80,6 @@ public class Settings {
   }
 
   public void reset() {
-    setUserLoginStatus(false);
-    setLastSurveyTakenDate("2015-06-04 21:40:46");
-    setDelayCounter(0);
+    editor.clear().commit();
   }
 }

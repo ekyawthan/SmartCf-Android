@@ -1,27 +1,31 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context="kyawthanmong.cfsmart.controller.SurveyActivity">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar_from_survey"
-        android:background="#512DA8"
+    tools:context="kyawthanmong.cfsmart.controller.SurveyActivity"
+    >
+  <android.support.v7.widget.Toolbar
+      xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:android="http://schemas.android.com/apk/res/android"
 
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        />
+      android:id="@+id/toolbar_from_survey"
+      android:background="#ff8cff1c"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+      />
 
 
-
-
-    <TextView
+  <TextView
+      android:gravity="center_horizontal"
       android:layout_marginTop="50dp"
+      android:layout_marginLeft="10dp"
+      android:layout_marginRight="10dp"
       android:textAlignment="center"
       android:textSize="20dp"
       android:text="Question 1 of 12"
@@ -39,9 +43,12 @@
       style="@style/NumberProgressBar_Passing_Green"
       />
   <TextView
+      android:layout_marginLeft="10dp"
+      android:layout_marginRight="10dp"
       android:gravity="center"
       android:id="@+id/surveyQuestion"
-      android:text=""
+      android:text="sdfasdf"
+      android:textStyle="bold"
       android:textAlignment="center"
       android:textSize="20dp"
       android:singleLine="false"
@@ -55,29 +62,55 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       >
-
-    <Button
+    <at.markushi.ui.CircleButton
         android:id="@+id/yes"
-        android:layout_margin="5dp"
-        android:text="Yes"
-        android:onClick="didResponseToQuestion"
-        android:textColor="#000"
-        android:background="#A4FD56"
         android:layout_weight="2"
-        android:layout_width="0dip"
-        android:layout_height="wrap_content"
-        />
-    <Button
-        android:layout_margin="5dp"
-        android:text="No"
         android:onClick="didResponseToQuestion"
+        android:layout_width="0dip"
+        android:src="@drawable/check"
+        android:layout_height="80dip"
+        android:layout_marginBottom="8dip"
+        app:cb_color="#99CC00"
+        />
+
+
+    <at.markushi.ui.CircleButton
         android:id="@+id/no"
-        android:textColor="#fff"
-        android:background="#ffff1a13"
+        android:src="@drawable/cancel"
+        android:layout_weight="2"
+        android:onClick="didResponseToQuestion"
+        android:layout_width="0dip"
+        android:layout_height="80dip"
+        android:layout_marginBottom="8dip"
+        app:cb_color="#ffff1a13"
+        />
+
+  </LinearLayout>
+  <LinearLayout
+      android:weightSum="4"
+      android:orientation="horizontal"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      >
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:textSize="20dp"
+        android:text="Yes"
         android:layout_weight="2"
         android:layout_width="0dip"
         android:layout_height="wrap_content"
         />
+    <TextView
+        android:textSize="20dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:text="No"
+        android:layout_weight="2"
+        android:layout_width="0dip"
+        android:layout_height="wrap_content"
+        />
+
 
   </LinearLayout>
 
