@@ -116,27 +116,48 @@ public class MainActivity
       monday.set(Calendar.SECOND, 0);
       monday.set(Calendar.MILLISECOND, 0);
       monday.set(Calendar.AM_PM, Calendar.PM);
+      SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+      Log.i("setting alarm: ", format.format(monday.getTime()));
+      AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+      Intent myIntent = new Intent(MainActivity.this, AlarmBroadcastReceiver.class);
+      pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, 0);
+
+      alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, monday.getTimeInMillis(),
+          alarmManager.INTERVAL_DAY * 7, pendingIntent);
 
     } else {
+      Log.i(TAG, "it's not monday");
+
       monday.set(Calendar.DAY_OF_WEEK, 2);
       monday.set(Calendar.HOUR, 0);
       monday.set(Calendar.MINUTE, 0);
       monday.set(Calendar.SECOND, 0);
       monday.set(Calendar.MILLISECOND, 0);
       monday.set(Calendar.AM_PM, Calendar.PM);
+      int weekOfNumber = monday.get(Calendar.WEEK_OF_YEAR);
+      Log.i(TAG, String.valueOf(weekOfNumber));
+      monday.set(Calendar.WEEK_OF_YEAR, weekOfNumber++);
+      SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+      Log.i("setting alarm: ", format.format(monday.getTime()));
+      AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+      Intent myIntent = new Intent(MainActivity.this, AlarmBroadcastReceiver.class);
+      pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, 0);
+
+      alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, monday.getTimeInMillis() + AlarmManager.INTERVAL_DAY * 7,
+          alarmManager.INTERVAL_DAY * 7, pendingIntent);
+      Calendar test = Calendar.getInstance();
+      test.setTimeInMillis(monday.getTimeInMillis() + AlarmManager.INTERVAL_DAY + AlarmManager.INTERVAL_DAY);
+
+      Log.i("Day", String.valueOf(test.get(Calendar.DAY_OF_WEEK)));
+
 
     }
 
+
+
     // for only monday
 
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    Log.i("setting alarm: ", format.format(monday.getTime()));
-    AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-    Intent myIntent = new Intent(MainActivity.this, AlarmBroadcastReceiver.class);
-    pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, 0);
 
-    alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, monday.getTimeInMillis(),
-        alarmManager.INTERVAL_DAY * 7, pendingIntent);
   }
 
   @Override public void onBackPressed() {

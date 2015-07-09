@@ -1,6 +1,5 @@
 package kyawthanmong.cfsmart.controller;
 
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -51,7 +50,6 @@ public class SurveyActivity extends AppCompatActivity implements InterfacePostSe
     settings = new Settings(this);
     setTitle("Home");
 
-
     if (getSupportActionBar() != null) {
       getSupportActionBar().setDisplayHomeAsUpEnabled(true);
       getSupportActionBar().setElevation(0);
@@ -63,19 +61,18 @@ public class SurveyActivity extends AppCompatActivity implements InterfacePostSe
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
 
-    if (item.getItemId() == android.R.id.home)
-    {
+    if (item.getItemId() == android.R.id.home) {
       finish();
     }
     return super.onOptionsItemSelected(item);
   }
 
   private void shouldSetupView() {
-    currentStatus           = (TextView) findViewById(R.id.textViewCurrent);
-    currentSurveyQuestion   = (TextView) findViewById(R.id.surveyQuestion);
-    numberProgressBar       = (NumberProgressBar) findViewById(R.id.numberbarForCurrent);
-    yesButton               = (CircleButton) findViewById(R.id.yes);
-    noButton                = (CircleButton) findViewById(R.id.no);
+    currentStatus = (TextView) findViewById(R.id.textViewCurrent);
+    currentSurveyQuestion = (TextView) findViewById(R.id.surveyQuestion);
+    numberProgressBar = (NumberProgressBar) findViewById(R.id.numberbarForCurrent);
+    yesButton = (CircleButton) findViewById(R.id.yes);
+    noButton = (CircleButton) findViewById(R.id.no);
 
     currentSurveyQuestion.setText(SurveyQuestions[0]);
     currentStatus.setText("Question 1 of  12 ");
@@ -105,22 +102,22 @@ public class SurveyActivity extends AppCompatActivity implements InterfacePostSe
     yesButton.setEnabled(false);
     noButton.setEnabled(false);
     new POSTSurvey(this, answerList, this);
-    loadToast.setText("Sending Questionnaire");
+    loadToast.setText("submitting Questionnaire");
     loadToast.show();
   }
 
   String[] SurveyQuestions = {
-      "In the past week have you had\t a change in sputum volume or colour?",
-      "In the past week have you had\t new or increased blood in your sputum?",
-      "In the past week have you had\t increased cough?",
-      "In the past week have you had\t increased wheeze?",
-      "In the past week have you had\t increased shortness of breath?",
-      "In the past week have you had\t increased fatigue or lethargy?",
-      "In the past week have you had\t a fever?",
-      "In the past week have you had\t a loss of appetite or weight?",
-      "In the past week have you had\t sinus pain or tenderness?",
-      "In the past week have you had\t new or increased chest pain?",
-      "In the past week have\t you felt low in mood?", "In the past week have\t you felt worried?"
+      "In the past week have you had an increase in sputum volume or change in colour?",
+      "In the past week have you had new or increased blood in your sputum?",
+      "In the past week have you had increased cough, or new pain on coughing?",
+      "In the past week have you had new or increased wheeze?",
+      "In the past week have you had new or increased chest tightness?",
+      "In the past week have you had increased shortness of breath or difficulty breathing?",
+      "In the past week have you had increased fatigue or lethargy?",
+      "In the past week have you had a fever?",
+      "In the past week have you had loss of appetite or weight?",
+      "In the past week have you had sinus pain or tenderness?",
+      "In the past week have you felt low in mood?", "In the past week have you felt worried?"
   };
 
   @Override public void didSucceedPostSurvey() {

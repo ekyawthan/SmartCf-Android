@@ -23,7 +23,7 @@
 
   <TextView
       android:gravity="center_horizontal"
-      android:layout_marginTop="50dp"
+      android:layout_marginTop="10dp"
       android:layout_marginLeft="10dp"
       android:layout_marginRight="10dp"
       android:textAlignment="center"
@@ -48,9 +48,9 @@
       android:gravity="center"
       android:id="@+id/surveyQuestion"
       android:text="sdfasdf"
-      android:textStyle="bold"
+      android:textStyle="normal"
       android:textAlignment="center"
-      android:textSize="20dp"
+      android:textSize="16pt"
       android:singleLine="false"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -67,7 +67,6 @@
         android:layout_weight="2"
         android:onClick="didResponseToQuestion"
         android:layout_width="0dip"
-        android:src="@drawable/check"
         android:layout_height="80dip"
         android:layout_marginBottom="8dip"
         app:cb_color="#99CC00"
@@ -76,7 +75,6 @@
 
     <at.markushi.ui.CircleButton
         android:id="@+id/no"
-        android:src="@drawable/cancel"
         android:layout_weight="2"
         android:onClick="didResponseToQuestion"
         android:layout_width="0dip"
