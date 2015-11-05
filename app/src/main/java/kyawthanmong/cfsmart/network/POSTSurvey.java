@@ -102,6 +102,17 @@ public class POSTSurvey {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        try {
+            params.put("question13", answerList.get(12));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            params.put("question14", answerList.get(13));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         try {
             params.put("delay_counter", settings.getDelayCounter());
 

@@ -19,7 +19,7 @@ public class RestClientAdapter {
 
   private static final int DEFAULT_TIMEOUT = 60 * 1000;
 
-  private static final String BASE_URL = Constant.BASE_URL;
+  private static final String BASE_URL =   "http://54.175.149.177/";
   //"http://54.165.84.21:443";
   public static AsyncHttpClient client = new AsyncHttpClient();
 

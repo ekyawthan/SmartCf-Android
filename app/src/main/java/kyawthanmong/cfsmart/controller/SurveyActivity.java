@@ -92,10 +92,10 @@ public class SurveyActivity extends AppCompatActivity implements InterfacePostSe
     }
 
     Counter = Counter + 1;
-    if (Counter < 12) {
+    if (Counter < 14) {
 
       currentSurveyQuestion.setText(SurveyQuestions[Counter]);
-      currentStatus.setText("Question  " + String.valueOf(Counter + 1) + " of 12 ");
+      currentStatus.setText("Question  " + String.valueOf(Counter + 1) + " of 14 ");
       numberProgressBar.setProgress(Counter + 1);
       return;
     }
@@ -107,17 +107,30 @@ public class SurveyActivity extends AppCompatActivity implements InterfacePostSe
   }
 
   String[] SurveyQuestions = {
-      "In the past week have you had an increase in sputum volume or change in colour?",
-      "In the past week have you had new or increased blood in your sputum?",
-      "In the past week have you had increased cough, or new pain on coughing?",
-      "In the past week have you had new or increased wheeze?",
-      "In the past week have you had new or increased chest tightness?",
-      "In the past week have you had increased shortness of breath or difficulty breathing?",
-      "In the past week have you had increased fatigue or lethargy?",
-      "In the past week have you had a fever?",
-      "In the past week have you had loss of appetite or weight?",
-      "In the past week have you had sinus pain or tenderness?",
-      "In the past week have you felt low in mood?", "In the past week have you felt worried?"
+          " In the past week have you had worsening sputum volume or colour?",
+
+          "In the past week have you had new or increased blood in your sputum?",
+
+          "In the past week have you had increased cough?",
+          "In the past week have you had new or increased chest pain?",
+
+          "In the past week have you had new or increased wheeze?",
+
+          "In the past week have you had new or increased chest tightness?",
+
+          "In the past week have you had increased shortness of breath or difficulty breathing?",
+
+          "In the past week have you had increased fatigue or lethargy?",
+
+          "In the past week have you had a fever?",
+
+          "In the past week have you had loss of appetite or weight?",
+
+          "In the past week have you had sinus pain or tenderness?",
+          "In the past week do you feel that your health has worsened? ",
+          "In the past week have you felt low in mood?",
+
+          "In the past week have you felt worried?"
   };
 
   @Override public void didSucceedPostSurvey() {

@@ -22,11 +22,11 @@ public class AlarmBroadcastReceiver extends BroadcastReceiver {
     Log.i(TAG, "received");
 
     if (new Survey(context).isTodaySurveyNotTakenYet()) {
-      AlarmManager alarmManager = (AlarmManager) context.getSystemService(context.ALARM_SERVICE);
-      Intent i = new Intent(context, MainActivity.TriggeredActivity.class);
-      PendingIntent pendingIntent =
-          PendingIntent.getActivity(context, 1, i, PendingIntent.FLAG_ONE_SHOT);
-      alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pendingIntent);
+//      AlarmManager alarmManager = (AlarmManager) context.getSystemService(context.ALARM_SERVICE);
+//     // Intent i = new Intent(context, MainActivity.TriggeredActivity.class);
+//      PendingIntent pendingIntent =
+//          PendingIntent.getActivity(context, 1, i, PendingIntent.FLAG_ONE_SHOT);
+//      alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), pendingIntent);
     }
   }
 }

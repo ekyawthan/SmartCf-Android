@@ -17,7 +17,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import com.afollestad.materialdialogs.MaterialDialog;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import kyawthanmong.cfsmart.Alarm.AlarmBroadcastReceiver;
@@ -166,89 +165,89 @@ public class MainActivity
 
   // Nortification Helper Class
 
-  public static class TriggeredActivity extends Activity {
+//  public static class TriggeredActivity extends Activity {
+//
+//    private Settings settings;
+//
+//    @Override protected void onCreate(Bundle savedInstanceState) {
+//      super.onCreate(savedInstanceState);
+//      super.onCreate(savedInstanceState);
+//      requestWindowFeature(Window.FEATURE_NO_TITLE);
+//      setContentView(R.layout.dialog);
+//      //Button dismiss = (Button) findViewById(R.id.dismiss);
+//      //Button snooze = (Button) findViewById(R.id.snooze);
+//      final Context context = this;
+//      this.settings = new Settings(this);
+//      Window wind;
+//      wind = this.getWindow();
+//      wind.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
+//      wind.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
+//      wind.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+//
+//      if (new Survey(this).isTodaySurveyNotTakenYet()) {
+//        showCallbacks(context);
+//      }
+//    }
+//
+//    @Override public void onBackPressed() {
+//      return;
+//    }
+//
+//    private void showCallbacks(final Context context) {
+//
+//      Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+//      final Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+//      r.play();
+//
+//      new MaterialDialog.Builder(this).title("Smart-CF Questionnaire")
+//          .positiveText("Begin Questionnaire")
+//
+//          .autoDismiss(false)
+//
+//          .dismissListener(new DialogInterface.OnDismissListener() {
+//            @Override public void onDismiss(DialogInterface dialog) {
+//              r.stop();
+//              finish();
+//            }
+//          })
+//          .negativeText("Snooze")
+//
+//          .callback(new MaterialDialog.ButtonCallback() {
+//            @Override public void onPositive(MaterialDialog dialog) {
+//              startActivity(new Intent(context, SurveyActivity.class));
+//              r.stop();
+//              finish();
+//            }
+//
+//            @Override public void onNegative(MaterialDialog dialog) {
+//              if (settings.getDelayCounter() < 5) {
+//                new Survey(context).settingsOnSnooz();
+//                setAlarm(60 * 30, ((AlarmManager) getSystemService(ALARM_SERVICE)), context);
+//                startActivity(new Intent(context, MainActivity.class));
+//                finish();
+//              } else {
+//                settings.setDelayCounter(0);
+//                // set email
+//              }
+//
+//              r.stop();
+//              finish();
+//            }
+//          })
+//          .show();
+//    }
+//  }
 
-    private Settings settings;
-
-    @Override protected void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
-      super.onCreate(savedInstanceState);
-      requestWindowFeature(Window.FEATURE_NO_TITLE);
-      setContentView(R.layout.dialog);
-      //Button dismiss = (Button) findViewById(R.id.dismiss);
-      //Button snooze = (Button) findViewById(R.id.snooze);
-      final Context context = this;
-      this.settings = new Settings(this);
-      Window wind;
-      wind = this.getWindow();
-      wind.addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
-      wind.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
-      wind.addFlags(WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
-
-      if (new Survey(this).isTodaySurveyNotTakenYet()) {
-        showCallbacks(context);
-      }
-    }
-
-    @Override public void onBackPressed() {
-      return;
-    }
-
-    private void showCallbacks(final Context context) {
-
-      Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
-      final Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-      r.play();
-
-      new MaterialDialog.Builder(this).title("Smart-CF Questionnaire")
-          .positiveText("Begin Questionnaire")
-
-          .autoDismiss(false)
-
-          .dismissListener(new DialogInterface.OnDismissListener() {
-            @Override public void onDismiss(DialogInterface dialog) {
-              r.stop();
-              finish();
-            }
-          })
-          .negativeText("Snooze")
-
-          .callback(new MaterialDialog.ButtonCallback() {
-            @Override public void onPositive(MaterialDialog dialog) {
-              startActivity(new Intent(context, SurveyActivity.class));
-              r.stop();
-              finish();
-            }
-
-            @Override public void onNegative(MaterialDialog dialog) {
-              if (settings.getDelayCounter() < 5) {
-                new Survey(context).settingsOnSnooz();
-                setAlarm(60 * 30, ((AlarmManager) getSystemService(ALARM_SERVICE)), context);
-                startActivity(new Intent(context, MainActivity.class));
-                finish();
-              } else {
-                settings.setDelayCounter(0);
-                // set email
-              }
-
-              r.stop();
-              finish();
-            }
-          })
-          .show();
-    }
-  }
-
-  public static final void setAlarm(int seconds, AlarmManager alarmManager, Context context) {
-    // create the pending intent
-    Intent intent = new Intent(context, TriggeredActivity.class);
-    // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    PendingIntent pendingIntent =
-        PendingIntent.getActivity(context, 2, intent, PendingIntent.FLAG_ONE_SHOT);
-    // get the alarm manager, and scedule an alarm that triggers my
-    // activity
-    alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + seconds * 1000,
-        pendingIntent);
-    // Toast.makeText(context, "Timer set to  30 Min.", Toast.LENGTH_SHORT).show();
-  }
+//  public static final void setAlarm(int seconds, AlarmManager alarmManager, Context context) {
+//    // create the pending intent
+//    Intent intent = new Intent(context, TriggeredActivity.class);
+//    // intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//    PendingIntent pendingIntent =
+//        PendingIntent.getActivity(context, 2, intent, PendingIntent.FLAG_ONE_SHOT);
+//    // get the alarm manager, and scedule an alarm that triggers my
+//    // activity
+//    alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + seconds * 1000,
+//        pendingIntent);
+//    // Toast.makeText(context, "Timer set to  30 Min.", Toast.LENGTH_SHORT).show();
+//  }
 }
