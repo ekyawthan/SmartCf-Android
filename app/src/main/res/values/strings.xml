@@ -5,4 +5,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_survey">SurveyActivity</string>
+    <string name="title_activity_notification_dismiss">NotificationDismissActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
 </resources>

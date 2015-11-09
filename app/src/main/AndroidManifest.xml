@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="kyawthanmong.cfsmart"
-
-    >
-
+    package="kyawthanmong.cfsmart" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +12,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="kyawthanmong.cfsmart.controller.MainActivity"
+            android:name=".controller.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -25,27 +22,42 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="kyawthanmong.cfsmart.controller.LoginActivity"
+            android:name=".controller.LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="kyawthanmong.cfsmart.controller.MainActivity$TriggeredActivity"
-            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen"
-            android:taskAffinity="" >
+            android:name=".controller.MainActivity$TriggeredActivity"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.DeviceDefault.Light.NoActionBar.Fullscreen" >
         </activity>
         <activity
-            android:name="kyawthanmong.cfsmart.controller.SurveyActivity"
+            android:name=".controller.SurveyActivity"
             android:label="@string/title_activity_survey"
             android:screenOrientation="portrait" >
         </activity>
 
         <receiver
-            android:name="kyawthanmong.cfsmart.Alarm.AlarmBroadcastReceiver"
+            android:name=".Alarm.AlarmBroadcastReceiver"
             android:enabled="true"
             android:exported="true" >
         </receiver>
 
+        <activity
+            android:name=".controller.NotificationDismissActivity"
+            android:label="@string/title_activity_notification_dismiss" >
+        </activity>
+
+        <receiver
+            android:name=".Alarm.RepeatAlarmBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true" >
+        </receiver>
+
+        <activity
+            android:name=".controller.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>

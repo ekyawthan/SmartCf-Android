@@ -6,21 +6,17 @@
     tools:context=".MainActivity">
 
     <LinearLayout
-        android:layout_marginTop="20dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-        <TextView
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="20pt"
-            android:textColor="@android:color/holo_orange_dark"
-            android:id="@+id/greeeting_text"
-            android:text= "SMART-CF"
-            android:singleLine="false"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:minHeight="?attr/actionBarSize"
+            android:background="#8ff38b"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.Toolbar>
 
 
     </LinearLayout>

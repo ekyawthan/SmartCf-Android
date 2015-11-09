@@ -1,5 +1,6 @@
 package kyawthanmong.cfsmart.controller;
 
+import android.app.NotificationManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -57,6 +58,8 @@ public class SurveyActivity extends AppCompatActivity implements InterfacePostSe
     this.loadToast = new LoadToast(this);
 
     shouldSetupView();
+    NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+    manager.cancel(1001);
   }
 
   @Override public boolean onOptionsItemSelected(MenuItem item) {
