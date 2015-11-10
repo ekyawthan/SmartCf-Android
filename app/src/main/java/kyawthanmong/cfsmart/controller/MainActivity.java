@@ -83,10 +83,11 @@ public class MainActivity
             }
         });
         if (settings.isUserLogin()) {
-            sampleAlarm();
             //setWeeklyAlarm();
+            setWeeklyAlarm(2, 0, 30);
+            resetAlarmTime();
+
         }
-        setAlarmTime();
     }
 
     @Override
@@ -95,12 +96,6 @@ public class MainActivity
         shouldSetUpView();
     }
 
-
-    private void sampleAlarm() {
-        AlarmManager manager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, new Intent(this, AlarmBroadcastReceiver.class), PendingIntent.FLAG_CANCEL_CURRENT);
-        manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis(), AlarmManager.INTERVAL_DAY * 7, pendingIntent);
-    }
 
     private void shouldSetUpView() {
         surveyButton = (Button) findViewById(R.id.buttonSurveyXml);
@@ -117,55 +112,28 @@ public class MainActivity
         }
     }
 
-    private void setWeeklyAlarm() {
-        Calendar monday = Calendar.getInstance();
+    private void setWeeklyAlarm(int day, int hour, int minute) {
 
-        if ((monday.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY)) {
-            Log.i(TAG, "it's monday");
-            int numOfWeek = monday.get(Calendar.WEEK_OF_YEAR);
-            monday.set(Calendar.WEEK_OF_YEAR, numOfWeek + 1);
-            //monday.set(Calendar.DAY_OF_WEEK, 2);
-            monday.set(Calendar.HOUR, 0);
-            monday.set(Calendar.MINUTE, 0);
-            monday.set(Calendar.SECOND, 0);
-            monday.set(Calendar.MILLISECOND, 0);
-            monday.set(Calendar.AM_PM, Calendar.PM);
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Log.i("setting alarm: ", format.format(monday.getTime()));
-            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-            Intent myIntent = new Intent(MainActivity.this, AlarmBroadcastReceiver.class);
-            pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, 0);
-
-            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, monday.getTimeInMillis(),
-                    alarmManager.INTERVAL_DAY * 7, pendingIntent);
-
+        Calendar calendar = Calendar.getInstance();
+        if (calendar.get(Calendar.DAY_OF_WEEK) == day) {
+            if (calendar.get(Calendar.HOUR) > hour) {
+                calendar.add(Calendar.WEEK_OF_YEAR, 1);
+            }
         } else {
-            Log.i(TAG, "it's not monday");
-
-            monday.set(Calendar.DAY_OF_WEEK, 2);
-            monday.set(Calendar.HOUR, 0);
-            monday.set(Calendar.MINUTE, 0);
-            monday.set(Calendar.SECOND, 0);
-            monday.set(Calendar.MILLISECOND, 0);
-            monday.set(Calendar.AM_PM, Calendar.PM);
-            int weekOfNumber = monday.get(Calendar.WEEK_OF_YEAR);
-            Log.i(TAG, String.valueOf(weekOfNumber));
-            monday.set(Calendar.WEEK_OF_YEAR, weekOfNumber++);
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Log.i("setting alarm: ", format.format(monday.getTime()));
-            AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-            Intent myIntent = new Intent(MainActivity.this, AlarmBroadcastReceiver.class);
-            pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, 0);
-
-            alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, monday.getTimeInMillis() + AlarmManager.INTERVAL_DAY * 7,
-                    alarmManager.INTERVAL_DAY * 7, pendingIntent);
-            Calendar test = Calendar.getInstance();
-            test.setTimeInMillis(monday.getTimeInMillis() + AlarmManager.INTERVAL_DAY + AlarmManager.INTERVAL_DAY);
-
-            Log.i("Day", String.valueOf(test.get(Calendar.DAY_OF_WEEK)));
-
-
+            calendar.set(Calendar.DAY_OF_WEEK, day);
+            calendar.set(Calendar.HOUR, hour);
+            calendar.set(Calendar.MINUTE, minute);
         }
+
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Log.i("setting alarm: ", format.format(calendar.getTime()));
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Intent myIntent = new Intent(MainActivity.this, AlarmBroadcastReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, myIntent, 0);
+
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
+                alarmManager.INTERVAL_DAY * 7, pendingIntent);
 
 
     }
@@ -176,23 +144,24 @@ public class MainActivity
     }
 
 
-    private void setAlarmTime(){
+    private void resetAlarmTime() {
         new SlideDayTimePicker.Builder(getSupportFragmentManager())
                 .setListener(new SlideDayTimeListener() {
                     @Override
                     public void onDayTimeSet(int day, int hour, int minute) {
                         Log.i(TAG, String.valueOf(day) + " " + String.valueOf(hour));
+                        hour = hour - 12 ;
+                        setWeeklyAlarm(day, hour, minute);
 
 
                     }
                 })
-                .setInitialDay(1)
-                .setInitialHour(13)
+                .setInitialDay(2)
+                .setInitialHour(12)
                 .setInitialMinute(30)
                 .build()
                 .show();
     }
-
 
 
 }
