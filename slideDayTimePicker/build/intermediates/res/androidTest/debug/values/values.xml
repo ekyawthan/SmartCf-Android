@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/Users/kyawthan/SmartCF/Android/SmartCf-Android/slideDayTimePicker/build/intermediates/bundles/debug/res/values/values.xml -->
+    <!-- From: file:/Users/kyawthan/Dropbox/SmartCf-Android/slideDayTimePicker/build/intermediates/bundles/debug/res/values/values.xml -->
     <eat-comment/>
     <string-array name="days_array">
         <item>@string/sunday</item>

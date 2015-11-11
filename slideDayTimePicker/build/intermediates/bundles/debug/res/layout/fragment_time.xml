@@ -5,4 +5,4 @@
     android:id="@+id/timePicker"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
-<!-- From: file:/Users/kyawthan/SmartCF/Android/SmartCf-Android/slideDayTimePicker/src/main/res/layout/fragment_time.xml -->
+<!-- From: file:/Users/kyawthan/Dropbox/SmartCf-Android/slideDayTimePicker/src/main/res/layout/fragment_time.xml -->

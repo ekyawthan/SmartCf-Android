@@ -52,6 +52,7 @@ public class POSTLogin {
             @Override public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 Log.i(TAG, String.valueOf(statusCode));
                 if (statusCode == 200){
+                    Settings.sharedInstance(mContext).setUserLoginStatus(true);
                     delegate.didLoginSucceess();
                 }else {
                     delegate.didLoginFail();

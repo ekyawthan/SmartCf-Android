@@ -75,6 +75,14 @@ public class Settings {
     this.editor.putString("lastSurveyDate", date).commit();
   }
 
+  public void setAlarmHour(int hour) {this.editor.putInt("alarmHour", hour);}
+  public void setAlarmDay (int day) {this.editor.putInt("day", day);}
+  public void setAlarmMin(int min) {this.editor.putInt("minute",min);}
+
+  public int getAlarmHour() { return this.pref.getInt("alarmHour", 0);}
+  public int getAlarmDay() { return pref.getInt("day", 2);}
+  public int getAlarmMin() { return  pref.getInt("minute", 30);}
+
   public String getLastSurveyTakenDate() {
     return pref.getString("lastSurveyDate", "2015-06-04 21:40:46");
   }

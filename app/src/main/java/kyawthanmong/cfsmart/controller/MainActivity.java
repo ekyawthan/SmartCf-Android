@@ -8,6 +8,7 @@ import android.content.Intent;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
@@ -20,6 +21,7 @@ import com.github.jjobes.slidedaytimepicker.SlideDayTimePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Set;
 
 import kyawthanmong.cfsmart.Alarm.AlarmBroadcastReceiver;
 import kyawthanmong.cfsmart.AppUtils;
@@ -39,6 +41,8 @@ public class MainActivity
 
     private String TAG = "MAIN";
 
+    private Button alarmResetButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +59,14 @@ public class MainActivity
             finish();
         }
 
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setElevation(0);
         }
+        setTitle("CF Smart");
+
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String currentTime = format.format(calendar.getTime());
@@ -84,9 +93,19 @@ public class MainActivity
         });
         if (settings.isUserLogin()) {
             //setWeeklyAlarm();
-            setWeeklyAlarm(2, 0, 30);
-            resetAlarmTime();
+           // setWeeklyAlarm(Settings., 0, 30);
+           // resetAlarmTime();
 
+        }
+
+        alarmResetButton = (Button) findViewById(R.id.settingButton);
+        if (alarmResetButton != null) {
+            alarmResetButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    resetAlarmTime();
+                }
+            });
         }
     }
 
@@ -115,14 +134,35 @@ public class MainActivity
     private void setWeeklyAlarm(int day, int hour, int minute) {
 
         Calendar calendar = Calendar.getInstance();
+        Log.i("week day", String.valueOf(calendar.get(Calendar.DAY_OF_WEEK))
+        );
         if (calendar.get(Calendar.DAY_OF_WEEK) == day) {
             if (calendar.get(Calendar.HOUR) > hour) {
                 calendar.add(Calendar.WEEK_OF_YEAR, 1);
+                calendar.set(Calendar.DAY_OF_WEEK, day);
+                calendar.set(Calendar.MINUTE, minute);
+                calendar.set(Calendar.MINUTE, 0);
+            }else {
+                calendar.set(Calendar.DAY_OF_WEEK, day);
+                calendar.set(Calendar.MINUTE, minute);
+                calendar.set(Calendar.MINUTE, 0);
+
             }
-        } else {
+        }
+        else if(calendar.get(Calendar.DAY_OF_WEEK) > day){
+            calendar.set(Calendar.DAY_OF_WEEK, day);
+            calendar.add(Calendar.WEEK_OF_YEAR, 1);
+            calendar.set(Calendar.HOUR, hour);
+            calendar.set(Calendar.MINUTE, minute);
+            calendar.set(Calendar.SECOND, 0);
+
+        }
+
+        else {
             calendar.set(Calendar.DAY_OF_WEEK, day);
             calendar.set(Calendar.HOUR, hour);
             calendar.set(Calendar.MINUTE, minute);
+            calendar.set(Calendar.SECOND, 0);
         }
 
 
@@ -149,16 +189,18 @@ public class MainActivity
                 .setListener(new SlideDayTimeListener() {
                     @Override
                     public void onDayTimeSet(int day, int hour, int minute) {
-                        Log.i(TAG, String.valueOf(day) + " " + String.valueOf(hour));
                         hour = hour - 12 ;
+                        Settings.sharedInstance(MainActivity.this).setAlarmDay(day);
+                        Settings.sharedInstance(MainActivity.this).setAlarmHour(hour);
+                        Settings.sharedInstance(MainActivity.this).setAlarmMin(minute);
                         setWeeklyAlarm(day, hour, minute);
 
 
                     }
                 })
-                .setInitialDay(2)
-                .setInitialHour(12)
-                .setInitialMinute(30)
+                .setInitialDay(Settings.sharedInstance(this).getAlarmDay())
+                .setInitialHour(Settings.sharedInstance(this).getAlarmHour() + 12)
+                .setInitialMinute(Settings.sharedInstance(this).getAlarmMin())
                 .build()
                 .show();
     }
