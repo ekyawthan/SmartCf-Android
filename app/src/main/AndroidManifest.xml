@@ -58,6 +58,9 @@
             android:name=".controller.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="cc11d0b8ca720a7a45e8e7420898b0a3c374d487" />
     </application>
 
 </manifest>

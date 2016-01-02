@@ -16,9 +16,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.github.jjobes.slidedaytimepicker.SlideDayTimeListener;
 import com.github.jjobes.slidedaytimepicker.SlideDayTimePicker;
 
+import io.fabric.sdk.android.Fabric;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Set;
@@ -46,6 +48,7 @@ public class MainActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
         this.settings = new Settings(this);
@@ -136,34 +139,40 @@ public class MainActivity
         Calendar calendar = Calendar.getInstance();
         Log.i("week day", String.valueOf(calendar.get(Calendar.DAY_OF_WEEK))
         );
+        Log.i("hour : ---->", String.valueOf(calendar.get(Calendar.HOUR_OF_DAY)));
         if (calendar.get(Calendar.DAY_OF_WEEK) == day) {
-            if (calendar.get(Calendar.HOUR) > hour) {
+            if (calendar.get(Calendar.HOUR_OF_DAY) > hour) {
                 calendar.add(Calendar.WEEK_OF_YEAR, 1);
                 calendar.set(Calendar.DAY_OF_WEEK, day);
+                calendar.set(Calendar.HOUR_OF_DAY, hour);
                 calendar.set(Calendar.MINUTE, minute);
-                calendar.set(Calendar.MINUTE, 0);
+                //calendar.set(Calendar.MINUTE, 0);
             }else {
                 calendar.set(Calendar.DAY_OF_WEEK, day);
+                calendar.set(Calendar.HOUR_OF_DAY, hour);
                 calendar.set(Calendar.MINUTE, minute);
-                calendar.set(Calendar.MINUTE, 0);
+                //calendar.set(Calendar.SECOND, 0);
+
 
             }
         }
         else if(calendar.get(Calendar.DAY_OF_WEEK) > day){
             calendar.set(Calendar.DAY_OF_WEEK, day);
             calendar.add(Calendar.WEEK_OF_YEAR, 1);
-            calendar.set(Calendar.HOUR, hour);
+            calendar.set(Calendar.HOUR_OF_DAY, hour);
             calendar.set(Calendar.MINUTE, minute);
-            calendar.set(Calendar.SECOND, 0);
+            //calendar.set(Calendar.SECOND, 0);
 
         }
 
         else {
             calendar.set(Calendar.DAY_OF_WEEK, day);
-            calendar.set(Calendar.HOUR, hour);
+            calendar.set(Calendar.HOUR_OF_DAY, hour);
             calendar.set(Calendar.MINUTE, minute);
-            calendar.set(Calendar.SECOND, 0);
         }
+
+        calendar.set(Calendar.SECOND, 0);
+
 
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -189,10 +198,13 @@ public class MainActivity
                 .setListener(new SlideDayTimeListener() {
                     @Override
                     public void onDayTimeSet(int day, int hour, int minute) {
-                        hour = hour - 12 ;
+                       // hour = hour - 12 ;
                         Settings.sharedInstance(MainActivity.this).setAlarmDay(day);
                         Settings.sharedInstance(MainActivity.this).setAlarmHour(hour);
                         Settings.sharedInstance(MainActivity.this).setAlarmMin(minute);
+                        Log.i(TAG, " day : " + day);
+                        Log.i(TAG, " hour : " + hour);
+                        Log.i(TAG, " minute : " + minute);
                         setWeeklyAlarm(day, hour, minute);
 
 

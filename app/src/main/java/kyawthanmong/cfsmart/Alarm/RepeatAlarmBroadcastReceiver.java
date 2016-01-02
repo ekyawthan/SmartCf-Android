@@ -25,7 +25,6 @@ public class RepeatAlarmBroadcastReceiver extends BroadcastReceiver {
             int notificationId = 1001;
             PendingIntent snoozeSurvey = NotificationDismissActivity.getDismissPendingIntent(notificationId, context);
             PendingIntent takeSurvey = PendingIntent.getActivity(context, 0, new Intent(context, SurveyActivity.class), PendingIntent.FLAG_CANCEL_CURRENT);
-
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
             builder.setPriority(NotificationCompat.PRIORITY_MAX)
                     .setDefaults(NotificationCompat.DEFAULT_ALL)
